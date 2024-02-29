@@ -3,7 +3,7 @@
         <v-row class="fill-height">
             <v-col class=" d-flex flex-column fill-height" cols="12" sm="6">
                 <div style="height:90%;" class=" d-flex flex-column justify-space-around py-15 align-center">
-                    <v-carousel v-model="slide" hide-delimiters cycle :show-arrows="false" style="width:80%">
+                    <v-carousel v-model="slide" hide-delimiters cycle :show-arrows="false" style="width:60%">
                         <v-carousel-item v-for="fact in panel.facts">
                             <v-card color="#00000085" class="white">
                                 <v-card-title>
@@ -16,7 +16,7 @@
                         </v-carousel-item>
                     </v-carousel>
                     
-                    <v-card width="80%" color="#00000085" class="white" v-if="panel.about">
+                    <v-card width="30%" color="#00000090" elevation="5" class="white" v-if="panel.about">
                         <v-card-title>
                             About
                         </v-card-title>
