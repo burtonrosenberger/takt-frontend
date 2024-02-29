@@ -1,11 +1,11 @@
 <template>
-    <v-container fluid class="fill-height">
+    <v-container fluid class="fill-height" :style="{ backgroundImage: `url('http://localhost:8055/assets/df075b4a-fc7d-425a-85d1-f523cecf8864')` }">
         <v-row class="fill-height">
             <v-col class=" d-flex flex-column fill-height" cols="12" sm="6">
                 <div style="height:90%;" class=" d-flex flex-column justify-space-around py-15 align-center">
                     <v-carousel v-model="slide" hide-delimiters cycle :show-arrows="false" style="width:80%">
                         <v-carousel-item v-for="fact in panel.facts">
-                            <v-card >
+                            <v-card color="#00000085" class="white">
                                 <v-card-title>
                                     Did you know...
                                 </v-card-title>
@@ -16,7 +16,7 @@
                         </v-carousel-item>
                     </v-carousel>
                     
-                    <v-card width="80%" v-if="panel.about">
+                    <v-card width="80%" color="#00000085" class="white" v-if="panel.about">
                         <v-card-title>
                             About
                         </v-card-title>
@@ -25,9 +25,9 @@
                         </v-card-text>
                     </v-card>
                 </div>
-                <div class="text-left">
-                    <p>You are at</p>
-                    <h1>{{ panel.title }}</h1>
+                <div class="text-left ">
+                    <p class="white">You are at</p>
+                    <h1 class="white">{{ panel.title }}</h1>
                 </div>
             </v-col>
             <v-col class="fill-height" cols="12" sm="6">
@@ -49,6 +49,13 @@
     </v-container>
 </template>
 <style scoped>
+.v-container { 
+    background-position: center;
+    background-size: cover;
+}
+.white { 
+    color:white
+}
 .h-90 {
     height: 90%;
 }
@@ -70,7 +77,6 @@ const buttons = ref([
 const loadLocation = async () => { 
     const { data } = await $fetch(
         'http://localhost:8055/items/locations?filter[url][_eq]=aachner-rathaus&fields=*,facts.text,background_images.directus_files_id',{
-        
     })
     panel.value = data[0]
 }
