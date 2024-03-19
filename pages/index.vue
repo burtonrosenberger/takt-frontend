@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid class="fill-height" :style="{ backgroundImage: `url('http://localhost:8055/assets/df075b4a-fc7d-425a-85d1-f523cecf8864')` }">
+    <v-container fluid class="fill-height" :style="{ backgroundImage: `url('https://takt.soultech.solutions/assets/df075b4a-fc7d-425a-85d1-f523cecf8864')` }">
         <v-row class="fill-height">
             <v-col class=" d-flex flex-column fill-height" cols="12" sm="6">
                 <div style="height:90%;" class=" d-flex flex-column justify-space-around py-15 align-center">
@@ -76,7 +76,7 @@ const buttons = ref([
 
 const loadLocation = async () => { 
     const { data } = await $fetch(
-        'http://localhost:8055/items/locations?filter[url][_eq]=aachner-rathaus&fields=*,facts.text,background_images.directus_files_id',{
+        'https://takt.soultech.solutions/items/locations?filter[url][_eq]=aachner-rathaus&fields=*,facts.text,background_images.directus_files_id',{
     })
     panel.value = data[0]
 }
