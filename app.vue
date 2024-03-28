@@ -1,11 +1,11 @@
 <script setup></script>
 <template>
   <v-app >
-    <NuxtPage></NuxtPage>
+    <NuxtPage ></NuxtPage>
   </v-app>
 </template>
-<style>
 
+<style>
 @font-face {
     font-family: 'Futura';
     src:  url('@/assets/font/unicode.futurab.ttf') format('truetype');
@@ -18,4 +18,5 @@ h1,h2,h3, p, span {
 html { 
   overflow: auto;
   font-family: 'Futura';
-}</style>
+}
+</style>
