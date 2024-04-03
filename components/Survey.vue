@@ -1,5 +1,5 @@
 <template>
-    <v-row  class="fill-min-height">
+    <v-row class="fill-min-height">
             <v-col cols="10" class="pa-0">
                 <v-carousel
                 v-model="model"
@@ -21,7 +21,7 @@
                 </v-carousel>
                 
             </v-col>
-            <v-col cols="2" class="d-flex align-center  flex-column pa-0">
+            <v-col cols="2" class="d-flex align-center flex-column pa-0">
                 <v-img :src="logo" width="100" height="80px" alt="Der Takt" />
                 <div>
                     <div class="question">

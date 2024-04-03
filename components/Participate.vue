@@ -17,10 +17,9 @@
                 show-arrows
                 style="height:100%"
                 >
-                    <v-slide-item
+                    <v-slide-group-item
                         v-for="n in 15"
                         :key="n"
-                        class="d-flex align-center"
                     >
                         <v-row class="project mx-1 pa-15">
                             <v-col cols="6" class="text-right">
@@ -37,7 +36,7 @@
                                 </p>
                             </v-col>
                         </v-row>
-                    </v-slide-item>
+                    </v-slide-group-item>
                 </v-slide-group>
             </v-col>
         </v-row>
