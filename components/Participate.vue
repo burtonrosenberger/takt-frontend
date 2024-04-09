@@ -6,7 +6,7 @@
                         <span>How to</span>
                         <p>Participate?</p>
                     </div>
-                    <v-img :src="questions" width="250px" />
+                    <v-img :src="questions" width="250px"  style="border-bottom:1px dashed #00000070;" />
                 </div>
             </v-col>
             <v-col cols="10" class="d-flex align-center pa-0">

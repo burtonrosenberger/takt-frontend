@@ -1,6 +1,6 @@
 <template>
-    <v-row class="fill-min-height">
-            <v-col cols="10" class="pa-0">
+    <v-row class="fill-min-height" >
+            <v-col cols="9" class="pa-0">
                 <v-carousel
                 v-model="model"
                 class="pa-4 fill-height d-flex align-center justify-center flex-column"
@@ -20,15 +20,15 @@
                     </v-carousel-item>
                 </v-carousel>
             </v-col>
-            <v-col cols="2" class="d-flex align-center justify-center fill-height flex-column" style="height:100vh !important;">
+            <v-col cols="3" class="d-flex align-center justify-center fill-height flex-column" style="height:100vh !important;">
                 <div class="question">
                     <span>_</span>
                     <p>Make your vote Count!</p>
                 </div>
-                <img :src="job_offers" width="100%" height="300px" />
+                <img :src="job_offers" width="100%" min-height="300px"  style="border-bottom:1px dashed #00000070;" />
             </v-col>
-            <v-col cols="10" class="text-center" style="z-index:3;margin-top:-300px;max-height:200px; overflow: hidden;">
-                <img ref="circularAachen" class="mx-auto " style="  object-fit: cover; object-position: bottom;" cover :src="circularAachenPng" width="700px"></img>
+            <v-col cols="9" class="text-center" style="z-index:3;margin-top:-310px;max-height:310px; overflow: hidden;">
+                <img ref="circularAachen" class="mx-auto " style="  object-fit: cover; object-position: bottom;" cover :src="circularAachenPng" width="1100px"></img>
             </v-col>
         </v-row>
 </template>
@@ -40,8 +40,8 @@
 }
 .project { 
     border-radius: 10000px;
-    width:700px;
-    height:700px;
+    width:800px;
+    height:800px;
     background-color:white;
 }
 .question {

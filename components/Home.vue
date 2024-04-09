@@ -1,35 +1,40 @@
 <template>
     <v-row class="fill-min-height">
-        <v-col>
-            <div ref="first" class="pt-10 d-flex flex-row hide-scroll" style="max-width:100vw; overflow-x:hidden;">
-                <v-col class="d-flex flex-column  fill-height" cols="12" sm="8">
-                    <h1 class="mb-15 mt-5 font-weight-thin">Revolutionizing Public Engagement Services:<br>
+        <v-col class="px-0">
+            <div id="home" ref="first" class="pt-10 d-flex flex-row hide-scroll" style="max-width:100vw; overflow-x:hidden;">
+                <v-col class="d-flex flex-column  fill-height" cols="12" sm="9">
+                    <h1  class="mb-15 mt-5 font-weight-thin">Revolutionizing Public Engagement Services:<br>
                         Bringing Participation to the People, On the Go.</h1>
-                    <v-row class="d-flex align-center" style="margin-top:300px; border-bottom:1px solid #00000070; ">
-                        <v-col v-for="b in buttons" class="pb-0">
-                            <div class="question" style="cursor:pointer" @click="scrollToInfo">
+                    <v-row class="d-flex align-center" style="margin-top:210px; border-bottom:1px dashed #00000070; ">
+                        <v-col v-for="b in buttons" class="pb-0"    >
+                            <div class="question mx-auto mb-5" @click="scrollInto(b.dest)" style="cursor:pointer; width:210px">
                                 <span>Click here to</span>
                                 <p>{{ b.title }}</p>
                             </div>
-                            <v-img width="100%" contain :src="b.img">
+                            <v-img width="100%"  contain :src="b.img">
                             </v-img>
                         </v-col>
                     </v-row>
                 </v-col>
                 <v-col class=" d-flex flex-row" cols="12" sm="6">
                     <div class="w-100 align-center d-flex text-center">
-                        <v-img :src="landMarks" height="90vh" class="d-flex align-center justify-center" cover>
+                        <v-img :src="landMarks" height="90vh" class="d-flex align-center justify-center" contain>
                             <v-img :src="marker" class="mx-auto" cover width="100px"></v-img>
                         </v-img>
                     </div>
                 </v-col>
-                <v-col cols="8" class="text-left">
-                    <h1 style="color:#374151;">
-                        Know More <v-btn @click="scrollToHome">Back</v-btn>
-                    </h1>
-                    <v-img :src="semminar" width="300px" height="350px" class="d-flex align-center justify-center" contain>
+                <v-col  cols="2" class=" d-flex  flex-column justify-end align-start " style="border-bottom:1px dashed #00000070;">
+                    <div class="question  text-left"  >
+                                <span>_</span>
+                                <p>Know more about..</p>
+                            </div>
+                            <v-img :src="semminar" width="290px" max-height="450px" class="d-flex align-center justify-center" cover>
                     </v-img>    
                 </v-col>
+                <v-col id="location" cols="12" sm="8" class="d-flex align-center justify-center">
+                    <p>Use this space to give info (to be provided)</p>
+                </v-col>
+                <v-btn @click="scrollToHome" v-if="view===`#location`" style="position:fixed; top:50%;" variant="text" size="x-large" class="pa-0"><v-icon size="x-large">mdi-chevron-left</v-icon></v-btn>
             </div>
         </v-col>
     </v-row>
@@ -75,28 +80,28 @@ import rollers from '@/assets/rollers.gif';
 
 const first = ref(null)
 const timer = ref(null)
+const view = ref('home')
 
 const buttons = ref([
-    { title: "How to participate!", img: questions, route: "/how-to-participate" },
-    { title: "Play a game!", img: rollers, route: "/games" },
-    { title: "Know more about...", img: semminar, route: "/green-projects" },
-    { title: "Make your vote count!", img: job_offers, route: "/participate-survey" },
+    { title: "How to participate!", img: questions, dest: "#participate" },
+    { title: "Play a game!", img: rollers, dest: "#games" },
+    { title: "Know more about...", img: semminar, dest: "#location" },
+    { title: "Make your vote count!", img: job_offers, dest: "#survey" },
 ])
 
-
-const scrollToInfo = () => {
-    // console.log(first.value)
-    scrollLeft(1200)
-}
 const scrollToHome = () => { 
     scrollRight(0)
+    scrollInto("#home")
+    view.value = "#home"
 }
-const scrollLeft = (max) => {
-    timer.value = setInterval(() => {
-        if (first.value) first.value.scrollLeft += 5
-        if (first.value.scrollLeft == max) clearInterval(timer.value)
-    }, 1)
+
+const scrollInto = (id) => { 
+    let el = document.querySelector(id)
+    el.scrollIntoView({ behavior: "smooth"})
+    view.value = id
+
 }
+
 const scrollRight = (max) => {
     timer.value = setInterval(() => {
         if (first.value) first.value.scrollLeft -= 5
