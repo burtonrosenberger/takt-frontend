@@ -9,20 +9,19 @@
                     <v-img :src="questions" width="250px" />
                 </div>
             </v-col>
-            <v-col cols="10" class="pa-0">
+            <v-col cols="10" class="d-flex align-center pa-0">
                 <v-slide-group
                 v-model="model"
                 class="pa-4"
                 active-class="success"
                 show-arrows
-                style="height:100%"
                 >
                     <v-slide-group-item
                         v-for="n in 15"
                         :key="n"
                     >
-                        <v-row class="project mx-1 pa-15">
-                            <v-col cols="6" class="text-right">
+                        <div class=" project mx-1 pa-15 d-flex align-start justify-center">
+                            <v-col cols="6" class=" text-right">
                                 <v-img class="mx-auto mr-0" width="75%"  :src="projectExample" />
                                 <p class="yellowTakt text-right">Location</p>
                                 <p class="yellowTakt text-right">Location Description</p>
@@ -35,7 +34,7 @@
                                     The open consultation Hours of the Citizens’ Dialogue and Administrative Management Department as well as other consultation hours take place in the citizens’ meeting in…
                                 </p>
                             </v-col>
-                        </v-row>
+                        </div>
                     </v-slide-group-item>
                 </v-slide-group>
             </v-col>

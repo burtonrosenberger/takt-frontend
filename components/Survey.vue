@@ -12,26 +12,22 @@
                         :key="p.question"
                     >
                         <div class="project my-15 pa-15  d-flex align-center justify-center flex-column">
-                                <h2 class="text-center">{{i+1}}. {{ p.question }}</h2>
-                                <div style="max-width:80%;">
+                            <h2 class="text-center">{{i+1}}. {{ p.question }}</h2>
+                            <div style="max-width:80%;">
                                 <v-btn variant="flat" color="#374151" style="width:200px; margin:15px; color:white; padding:15px" class=" rounded-0 " @click="choiceAnswer" v-for="a in p.answers">{{ a }}</v-btn>
-                                </div>
                             </div>
+                        </div>
                     </v-carousel-item>
                 </v-carousel>
-                
             </v-col>
-            <v-col cols="2" class="d-flex align-center flex-column pa-0">
-                <v-img :src="logo" width="100" height="80px" alt="Der Takt" />
-                <div>
-                    <div class="question">
-                        <span>_</span>
-                        <p>Make your vote Count!</p>
-                    </div>
-                    <v-img :src="job_offers" width="250px" />
+            <v-col cols="2" class="d-flex align-center justify-center fill-height flex-column" style="height:100vh !important;">
+                <div class="question">
+                    <span>_</span>
+                    <p>Make your vote Count!</p>
                 </div>
+                <img :src="job_offers" width="100%" height="300px" />
             </v-col>
-            <v-col cols="10" class="text-center" style="margin-top:-300px;max-height:200px; overflow: hidden;">
+            <v-col cols="10" class="text-center" style="z-index:3;margin-top:-300px;max-height:200px; overflow: hidden;">
                 <img ref="circularAachen" class="mx-auto " style="  object-fit: cover; object-position: bottom;" cover :src="circularAachenPng" width="700px"></img>
             </v-col>
         </v-row>

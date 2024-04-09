@@ -8,12 +8,13 @@
 <style>
 @font-face {
     font-family: 'Futura';
-    src:  url('@/assets/font/unicode.futurab.ttf') format('truetype');
+    src:  url('@/assets/font/futura light bt.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 h1,h2,h3 { 
   color:#374151;
+  font-weight:400 !important;
 }
 html { 
   overflow: auto;
