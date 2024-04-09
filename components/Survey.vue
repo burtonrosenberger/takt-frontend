@@ -6,6 +6,7 @@
                 class="pa-4 fill-height d-flex align-center justify-center flex-column"
                 :show-arrows="false"
                 hide-delimiters
+                direction="vertical"
                 >
                     <v-carousel-item
                         v-for="(p,i) in questions"
@@ -13,8 +14,8 @@
                     >
                         <div class="project my-15 pa-15  d-flex align-center justify-center flex-column">
                             <h2 class="text-center">{{i+1}}. {{ p.question }}</h2>
-                            <div style="max-width:80%;">
-                                <v-btn variant="flat" color="#374151" style="width:200px; margin:15px; color:white; padding:15px" class=" rounded-0 " @click="choiceAnswer" v-for="a in p.answers">{{ a }}</v-btn>
+                            <div class="text-center">
+                                <v-btn variant="flat" color="#374151" style="min-width:200px; margin:15px; color:white; padding:10px" class=" rounded-0 " @click="choiceAnswer" v-for="a in p.answers">{{ a }}</v-btn>
                             </div>
                         </div>
                     </v-carousel-item>
@@ -27,8 +28,8 @@
                 </div>
                 <img :src="job_offers" width="100%" min-height="300px"  style="border-bottom:1px dashed #00000070;" />
             </v-col>
-            <v-col cols="9" class="text-center" style="z-index:3;margin-top:-310px;max-height:310px; overflow: hidden;">
-                <img ref="circularAachen" class="mx-auto " style="  object-fit: cover; object-position: bottom;" cover :src="circularAachenPng" width="1100px"></img>
+            <v-col cols="9" class="text-center pb-0 mb-0 " style="z-index:3;margin-top:-345px;max-height:350px; overflow: hidden;">
+                <img ref="circularAachen" class="mx-auto " style="object-fit: cover; object-position: bottom; width:1200px" cover :src="circularAachenPng" ></img>
             </v-col>
         </v-row>
 </template>
@@ -60,7 +61,6 @@
 }
 </style>
 <script setup>
-import logo from '@/assets/logo.png';
 
 import job_offers from '@/assets/job_offers.gif';
 import circularAachenPng from '@/assets/Circular aachen.png';
@@ -69,13 +69,41 @@ const startAt = ref(0)
 const timer = ref(null)
 const circularAachen = ref(null)
 
-const questions = ref([{
-    question: "Which Aachen city dashboard do you use more often?",
-    answers: [ "Mobility Dash", "Covid Dashboard", "Option 3", "None"]
-}])
+const questions = ref([
+    {
+        question: "Which Aachen city dashboard do you use more often?",
+        answers: [ "Mobility Dash", "Covid Dashboard", "Option 3", "None"]
+    },
+    {
+        question: "Which Aachen city park do you use more often?",
+        answers: [ "Aachen garden", "Aachen park", "Option 3", "None"]
+    },
+    {
+        question: "Which Aachen city park do you use more often?",
+        answers: [ "Aachen garden", "Aachen park", "Option 3", "None"]
+    },
+    {
+        question: "Which Aachen city park do you use more often?",
+        answers: [ "Aachen garden", "Aachen park", "Option 3", "None"]
+    },
+    {
+        question: "Which Aachen city park do you use more often?",
+        answers: [ "Aachen garden", "Aachen park", "Option 3", "None"]
+    },
+    {
+        question: "Which Aachen city park do you use more often?",
+        answers: [ "Aachen garden", "Aachen park", "Option 3", "None"]
+    },
+    {
+        question: "Which Aachen city park do you use more often?",
+        answers: [ "Aachen garden", "Aachen park", "Option 3", "None"]
+    }
+])
 
 const choiceAnswer = () => { 
     rotateAachen(90)
+    if (model.value == questions.value.length-1) model.value = 0
+    else model.value++
 } 
 
 const rotateAachen = (deg) => {

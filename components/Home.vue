@@ -31,7 +31,7 @@
                             <v-img :src="semminar" width="290px" max-height="450px" class="d-flex align-center justify-center" cover>
                     </v-img>    
                 </v-col>
-                <v-col id="location" cols="12" sm="8" class="d-flex align-center justify-center">
+                <v-col id="location" cols="12" sm="8" class="d-flex align-center justify-center ">
                     <p>Use this space to give info (to be provided)</p>
                 </v-col>
                 <v-btn @click="scrollToHome" v-if="view===`#location`" style="position:fixed; top:50%;" variant="text" size="x-large" class="pa-0"><v-icon size="x-large">mdi-chevron-left</v-icon></v-btn>
@@ -108,4 +108,6 @@ const scrollRight = (max) => {
         if (first.value.scrollLeft == max) clearInterval(timer.value)
     }, 1)
 }
+
+defineExpose( { scrollRight })
 </script>

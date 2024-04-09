@@ -4,13 +4,13 @@
             <v-img style="cursor:pointer" @click="scrollInto(`#home`)" :src="logo"  contain max-width="170px" alt="Der Takt" />
             <v-spacer></v-spacer>
             <v-btn><v-icon color="#374151" size="x-large">mdi-volume-high </v-icon></v-btn>
-            <v-btn variant="text" size="small"><v-img width="23px" height="17px" :src="german"
-                        alt="German" /></v-btn>
-                <v-btn variant="text" size="small"><v-img width="23px" height="17px" :src="english"
-                        alt="English" /></v-btn>
+            <v-btn variant="text" size="small"><v-img width="25px" height="25px" :src="german"
+                alt="German" /></v-btn>
+            <v-btn variant="text" size="small"><v-img width="25px" height="25px" :src="english"
+                alt="English" /></v-btn>
         </v-app-bar>
 
-        <Home></Home>
+        <Home ref="homeRef"></Home>
         <Participate id="participate"></Participate>
         <Survey id="survey"></Survey>
     </v-container>
@@ -32,6 +32,7 @@ import english from '@/assets/lang/eng.png';
 import { onMounted, ref } from 'vue';
 
 const lastScrollTop = ref(0)
+const homeRef = ref( null)
 const last = ref(0)
 const panel = ref({})
 const positions = [`home`, `participate`, `survey`]
@@ -39,6 +40,7 @@ const actualView = ref(0)
 
 const scrollInto = (id) => { 
     let el = document.querySelector(id)
+    if (id === `#home`) homeRef.value.scrollRight(0)
     el.scrollIntoView({ behavior: "smooth"})
     // view.value = id
 }
