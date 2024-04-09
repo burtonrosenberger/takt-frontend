@@ -3,8 +3,8 @@
             <v-col cols="2" class="d-flex align-center justify-center flex-column pa-0">
                 <div>
                     <div class="question">
-                        <span>How to</span>
-                        <p>Participate?</p>
+                        <span>_</span>
+                        <p>How to participate?</p>
                     </div>
                     <v-img :src="questions" width="250px"  style="border-bottom:1px dashed #00000070;" />
                 </div>

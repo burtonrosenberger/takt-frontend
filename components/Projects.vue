@@ -1,6 +1,6 @@
 <template>
   <v-row  class="fill-min-height">
-    <v-col cols="10" class="d-flex align-center pa-0">
+    <v-col id="projects" cols="10" class="d-flex align-center pa-0">
         <v-slide-group
         v-model="model"
         class="pa-4"
@@ -69,5 +69,5 @@
 import projectExample from '@/assets/SCR-20240328-rexn.jpeg';
 import qrCode from '@/assets/testeQRCode.png';
 import semminar from '@/assets/semminar.gif';
-const model = ref(0)
+const model = ref(14)
 </script>

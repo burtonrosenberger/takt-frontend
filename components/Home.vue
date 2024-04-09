@@ -10,9 +10,13 @@
                         Bringing Participation to the People, On the Go.</h1>
                     <v-row class="d-flex align-center" style="margin-top:210px; border-bottom:1px dashed #00000070; ">
                         <v-col v-for="b in buttons" class="pb-0"    >
-                            <div class="question mx-auto mb-5" @click="scrollInto(b.dest)" style="cursor:pointer; width:210px">
+                            <div class="question mx-auto mb-5" @click="b.dest !== `#location` ? scrollInto(b.dest):  undefined" style="cursor:pointer; width:210px">
                                 <span>Click here to</span>
                                 <p>{{ b.title }}</p>
+                                <div v-if="b.dest === `#location`" class="mt-2 text-center">
+                                    <v-btn @click="scrollInto(`#projects`)" variant="outlined" size="small" style="border-color:white !important;">Projects</v-btn>
+                                    <v-btn @click="scrollInto(`#location`)" variant="outlined" size="small" style="border-color:white !important; margin-left:5px;">Location</v-btn>
+                                </div>
                             </div>
                             <v-img width="100%"  contain :src="b.img">
                             </v-img>
