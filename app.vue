@@ -41,4 +41,13 @@ html {
     border-radius: 10px;
     border: 3px solid #ffffff;
   }
+
+
+  .fill-min-height {
+    min-height: 100vh;
+}
+
+.yellowTakt {
+    color: #fcb34a
+}
 </style>

@@ -1,9 +1,12 @@
 <template>
-    <v-row class="fill-min-height">
-        <v-col class="px-0">
-            <div id="home" ref="first" class="pt-10 d-flex flex-row hide-scroll" style="max-width:100vw; overflow-x:hidden;">
-                <v-col class="d-flex flex-column  fill-height" cols="12" sm="9">
-                    <h1  class="mb-15 mt-5 font-weight-thin">Revolutionizing Public Engagement Services:<br>
+    <v-row class="fill-min-height pa-0">
+        <v-col class="pa-0">
+            <div  ref="first" class="d-flex flex-row hide-scroll" style="max-width:100vw; overflow-x:hidden;">
+                <v-col cols="12">
+                    <Projects></Projects>
+                 </v-col>
+                <v-col id="home"  class="d-flex flex-column fill-height" cols="12" sm="9">
+                    <h1 class="mb-15 mt-15 font-weight-thin">Revolutionizing Public Engagement Services:<br>
                         Bringing Participation to the People, On the Go.</h1>
                     <v-row class="d-flex align-center" style="margin-top:210px; border-bottom:1px dashed #00000070; ">
                         <v-col v-for="b in buttons" class="pb-0"    >
@@ -90,24 +93,33 @@ const buttons = ref([
 ])
 
 const scrollToHome = () => { 
-    scrollRight(0)
+    // scrollLeft(1200)
     scrollInto("#home")
-    view.value = "#home"
 }
 
 const scrollInto = (id) => { 
-    let el = document.querySelector(id)
-    el.scrollIntoView({ behavior: "smooth"})
+    document.querySelector(id).scrollIntoView({ behavior: "smooth", inline: "start"})
+    // if(id === `#home`) window.scrollY=0
     view.value = id
-
 }
 
-const scrollRight = (max) => {
-    timer.value = setInterval(() => {
-        if (first.value) first.value.scrollLeft -= 5
-        if (first.value.scrollLeft == max) clearInterval(timer.value)
-    }, 1)
-}
+// const scrollLeft = (max) => {
+//     timer.value = setInterval(() => {
+//         if (first.value) first.value.scrollLeft += 5
+//         if (first.value.scrollLeft == max) clearInterval(timer.value)
+//     }, 1)
+// }
 
-defineExpose( { scrollRight })
+
+// const scrollRight = (max) => {
+//     timer.value = setInterval(() => {
+//         if (first.value) first.value.scrollLeft -= 5
+//         if (first.value.scrollLeft == max) clearInterval(timer.value)
+//     }, 1)
+// }
+onMounted(() => { 
+   setTimeout(() => {scrollToHome()},1500)
+}) 
+
+defineExpose( { scrollInto })
 </script>

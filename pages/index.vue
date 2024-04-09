@@ -1,10 +1,10 @@
 <template>
     <v-container fluid :style="{ backgroundColor: `#fcb34a` }">
         <v-app-bar color="#fcb34a" elevation="0">
-            <v-img style="cursor:pointer" @click="scrollInto(`#home`)" :src="logo"  contain max-width="170px" alt="Der Takt" />
+            <v-img style="cursor:pointer" @click="homeRef.scrollInto(`#home`)" :src="logo"  contain max-width="170px" alt="Der Takt" />
             <v-spacer></v-spacer>
             <v-btn><v-icon color="#374151" size="x-large">mdi-volume-high </v-icon></v-btn>
-            <v-btn variant="text" size="small"><v-img width="25px" height="25px" :src="german"
+            <v-btn variant="text" size="small"><v-img width="23px" height="25px" :src="german"
                 alt="German" /></v-btn>
             <v-btn variant="text" size="small"><v-img width="25px" height="25px" :src="english"
                 alt="English" /></v-btn>
@@ -16,17 +16,10 @@
     </v-container>
 </template>
 <style scoped>
-.fill-min-height {
-    min-height: 100vh;
-}
 
-.yellowTakt {
-    color: #fcb34a
-}
 </style>
 <script setup>
 import logo from '@/assets/logo.png';
-
 import german from '@/assets/lang/deu.png';
 import english from '@/assets/lang/eng.png';
 import { onMounted, ref } from 'vue';
@@ -38,12 +31,6 @@ const panel = ref({})
 const positions = [`home`, `participate`, `survey`]
 const actualView = ref(0)
 
-const scrollInto = (id) => { 
-    let el = document.querySelector(id)
-    if (id === `#home`) homeRef.value.scrollRight(0)
-    el.scrollIntoView({ behavior: "smooth"})
-    // view.value = id
-}
 const handleScroll = (e) => {
     var st = window.scrollY || document.documentElement.scrollTop;
 
