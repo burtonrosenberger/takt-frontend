@@ -22,11 +22,13 @@
                 </v-carousel>
             </v-col>
             <v-col cols="3" class="d-flex align-center justify-center fill-height-min flex-column">
+            <div>
                 <div class="question ">
                     <span>_</span>
                     <p>Make your vote Count!</p>
                 </div>
                 <img :src="job_offers" width="100%" min-height="300px"  style="border-bottom:1px dashed #00000070;" />
+            </div>
             </v-col>
             <v-col cols="9" class="text-center pb-0 mb-0 " style="z-index:3;margin-top:-345px;max-height:350px; overflow: hidden;">
                 <img ref="circularAachen" class="mx-auto " style="object-fit: cover; object-position: bottom; width:1200px" cover :src="circularAachenPng" ></img>

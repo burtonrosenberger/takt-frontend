@@ -33,7 +33,7 @@
         <div>
             <div class="question mx-auto">
                 <span>_</span>
-                <p>Know more about...</p>
+                <p>Know more about projects</p>
             </div>
             <v-img :src="semminar" width="350px" cover  style="border-bottom:1px dashed #00000070;" />
         </div>

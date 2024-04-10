@@ -35,13 +35,14 @@
                         </v-img>
                     </div>
                 </v-col>
-                <v-col cols="2" class=" d-flex  flex-column justify-end align-start "
-                    style="border-bottom:1px dashed #00000070;">
-                    <div class="mx-auto question  text-left">
+                <v-col cols="2" class=" d-flex  flex-column justify-end align-end">
+                    <div class="">
+                    <div class="mx-auto question text-left">
                         <span>_</span>
-                        <p>Know more about..</p>
+                        <p>Know more about the location</p>
                     </div>
-                    <img :src="semminar" width="150%" height="50%" />
+                    <img :src="semminar" width="150%" height="80%" style="border-bottom:1px dashed #00000070;" />
+                     </div>
                 </v-col>
                 <v-col id="location" cols="12" sm="8" class="d-flex align-center justify-center ">
                     <p>Use this space to give info (to be provided)</p>
