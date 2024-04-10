@@ -18,8 +18,8 @@
                         <p class="yellowTakt text-right">Location Description</p>
                     </v-col>
                     <v-col cols="6 pt-1">
-                        <h1>Título</h1>
-                        <h4>Subtitulo</h4>
+                        <h1 class="white">Title</h1>
+                        <h4>SubTitle</h4>
                         <v-img width="80px" :src="qrCode" />
                         <p>
                             The open consultation Hours of the Citizens’ Dialogue and Administrative Management Department as well as other consultation hours take place in the citizens’ meeting in…
@@ -31,7 +31,7 @@
     </v-col>
     <v-col cols="2" class="d-flex align-center justify-center flex-column pa-0">
         <div>
-            <div class="question">
+            <div class="question mx-auto">
                 <span>_</span>
                 <p>Know more about...</p>
             </div>
@@ -41,18 +41,33 @@
   </v-row>
 </template>
 <style scoped>
+h1 { color:white;}
+
 .project { 
-  border-radius: 10000%;
+  border-radius: 10000px;
   width:700px;
   height:700px;
   background-color:#374151;
   color:white
 }
 .question {
-  background-color: #374151;
-  padding: 0px 10px 10px;
-  width:250px;
-  margin:auto
+    background-color: #374151;
+    padding:0px 10px 15px;
+    position:relative;
+    width:250px;
+}
+.question::before{ 
+    content: '';
+    position: absolute;
+    z-index: 999;
+    border-left: 1.3px solid #374151;
+    width: 18px;
+    height: 18px;
+    transform: rotateY(0deg) rotate(-45deg);
+    right: 30px;
+    background-color: #374151;
+    border-bottom: 1.3px solid #374151;
+    bottom: -9px;
 }
 
 .question span {

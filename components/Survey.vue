@@ -21,8 +21,8 @@
                     </v-carousel-item>
                 </v-carousel>
             </v-col>
-            <v-col cols="3" class="d-flex align-center justify-center fill-height flex-column" style="height:100vh !important;">
-                <div class="question">
+            <v-col cols="3" class="d-flex align-center justify-center fill-height-min flex-column">
+                <div class="question ">
                     <span>_</span>
                     <p>Make your vote Count!</p>
                 </div>
@@ -47,9 +47,22 @@
 }
 .question {
     background-color: #374151;
-    padding: 0px 10px 10px;
+    padding:0px 10px 15px;
+    position:relative;
 }
-
+.question::before{ 
+    content: '';
+    position: absolute;
+    z-index: 999;
+    border-left: 1.3px solid #374151;
+    width: 18px;
+    height: 18px;
+    transform: rotateY(0deg) rotate(-45deg);
+    right: 30px;
+    background-color: #374151;
+    border-bottom: 1.3px solid #374151;
+    bottom: -9px;
+}
 .question span {
     color: white;
     font-size: 12px;
