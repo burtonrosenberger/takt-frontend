@@ -27,8 +27,8 @@
                                 <p class="yellowTakt text-right">Location Description</p>
                             </v-col>
                             <v-col cols="6 pt-1">
-                                <h1>Título</h1>
-                                <h4>Subtitulo</h4>
+                                <h1>Title</h1>
+                                <h4>Subtitle</h4>
                                 <v-img width="80px" :src="qrCode" />
                                 <p>
                                     The open consultation Hours of the Citizens’ Dialogue and Administrative Management Department as well as other consultation hours take place in the citizens’ meeting in…

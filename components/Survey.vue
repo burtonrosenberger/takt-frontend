@@ -13,9 +13,9 @@
                         :key="p.question"
                     >
                         <div class="project my-15 pa-15  d-flex align-center justify-center flex-column">
-                            <h2 class="text-center">{{i+1}}. {{ p.question }}</h2>
+                            <h1 class="text-center">{{i+1}}. {{ p.question }}</h1>
                             <div class="text-center">
-                                <v-btn variant="flat" color="#374151" style="min-width:200px; margin:15px; color:white; padding:10px" class=" rounded-0 " @click="choiceAnswer" v-for="a in p.answers">{{ a }}</v-btn>
+                                <v-btn variant="flat" color="#374151" style="min-width:200px; margin:15px; color:white; padding:10px" class="rounded-0" @click="choiceAnswer" v-for="a in p.answers">{{ a }}</v-btn>
                             </div>
                         </div>
                     </v-carousel-item>

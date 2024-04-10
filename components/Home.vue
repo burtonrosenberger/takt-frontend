@@ -41,7 +41,7 @@
                         <span>_</span>
                         <p>Know more about the location</p>
                     </div>
-                    <img :src="semminar" width="150%" height="80%" style="border-bottom:1px dashed #00000070;" />
+                    <img :src="semminar" width="150%" height="75%" style="border-bottom:1px dashed #00000070;" />
                      </div>
                 </v-col>
                 <v-col id="location" cols="12" sm="8" class="d-flex align-center justify-center ">
@@ -110,6 +110,7 @@
 
 .question p {
     background-color: white;
+    font-size:20pt;
     padding: 5px;
 }
 </style>
@@ -127,7 +128,7 @@ const timer = ref(null)
 const view = ref('home')
 
 const buttons = ref([
-    { title: "How to participate!", img: questions, dest: "#participate" },
+    { title: "How to participate?", img: questions, dest: "#participate" },
     { title: "Play a game!", img: rollers, dest: "#games" },
     { title: "Know more about...", img: semminar, dest: "#location" },
     { title: "Make your vote count!", img: job_offers, dest: "#survey" },
