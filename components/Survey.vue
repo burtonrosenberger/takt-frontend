@@ -10,12 +10,12 @@
                 >
                     <v-carousel-item
                         v-for="(p,i) in questions"
-                        :key="p.question"
+                        :key="p.questions_id.id"
                     >
                         <div class="project my-15 pa-15 pt-0  d-flex align-center justify-center flex-column">
-                            <h1 class="text-center mb-15">{{i+1}}. {{ p.question }}</h1>
+                            <h1 class="text-center mb-15">{{i+1}}. {{ p.questions_id.question }}</h1>
                             <div class="text-center mt-5">
-                                <v-btn variant="flat" color="#374151" style="min-width:200px; margin:15px; color:white; padding:10px" class="rounded-0" @click="choiceAnswer" v-for="a in p.answers">{{ a }}</v-btn>
+                                <v-btn variant="flat" color="#374151" style="border-radius:5px; min-width:200px; margin:15px; color:white; padding:10px" @click="choiceAnswer" v-for="a in p.questions_id.answers">{{ a.answer }}</v-btn>
                             </div>
                         </div>
                     </v-carousel-item>
@@ -85,40 +85,12 @@ const timer = ref(null)
 const circularAachen = ref(null)
 const props = defineProps(['questions'])
 
-const questions = ref([
-    {
-        question: "Which Aachen city dashboard do you use more often?",
-        answers: [ "Mobility Dash", "Covid Dashboard", "Option 3", "None"]
-    },
-    {
-        question: "Which Aachen city park do you use more often?",
-        answers: [ "Aachen garden", "Aachen park", "Option 3", "None"]
-    },
-    {
-        question: "Which Aachen city park do you use more often?",
-        answers: [ "Aachen garden", "Aachen park", "Option 3", "None"]
-    },
-    {
-        question: "Which Aachen city park do you use more often?",
-        answers: [ "Aachen garden", "Aachen park", "Option 3", "None"]
-    },
-    {
-        question: "Which Aachen city park do you use more often?",
-        answers: [ "Aachen garden", "Aachen park", "Option 3", "None"]
-    },
-    {
-        question: "Which Aachen city park do you use more often?",
-        answers: [ "Aachen garden", "Aachen park", "Option 3", "None"]
-    },
-    {
-        question: "Which Aachen city park do you use more often?",
-        answers: [ "Aachen garden", "Aachen park", "Option 3", "None"]
-    }
-])
+
 
 const choiceAnswer = () => { 
     rotateAachen(90)
-    if (model.value == questions.value.length-1) model.value = 0
+    console.log()
+    if (model.value == (props.questions.length-1)) model.value = 0
     else model.value++
 } 
 

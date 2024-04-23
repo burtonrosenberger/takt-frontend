@@ -9,6 +9,7 @@
                                 style="border-top-left-radius:1000%" :src="`https://armn.takt.city/assets/${projects_id.image}`" />
                             <p class="yellowTakt text-right">{{ projects_id.location }}</p>
                             <p class="yellowTakt text-right">{{ projects_id.location_description }}</p>
+                            <v-btn variant="text"><v-icon color="white" size="x-large">mdi-volume-high </v-icon></v-btn>
                         </v-col>
                         <v-col cols="6 pt-15">
                             <h1 class="white">{{ projects_id.title }}</h1>
@@ -18,6 +19,8 @@
                                 {{ projects_id.description }}
                             </p>
                         </v-col>
+                        
+
                     </div>
                 </v-slide-group-item>
             </v-slide-group>
@@ -80,5 +83,6 @@ h1 {
 import projectExample from '@/assets/SCR-20240328-rexn.jpeg';
 import qrCode from '@/assets/testeQRCode.png';
 import semminar from '@/assets/semminar.gif';
+const model = ref(0)
 const props = defineProps(['projects'])
 </script>

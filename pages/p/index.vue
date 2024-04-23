@@ -54,7 +54,7 @@ const loadLocation = async () => {
         url = route.params.url
     }
     const { data } = await $fetch(
-        'https://armn.takt.city/items/locations?fields=*,projects.projects_id.*&filter[url][_eq]='+ url,
+        'https://armn.takt.city/items/locations?fields=*,projects.projects_id.*,questions.questions_id.*,questions.questions_id.answers.*&filter[url][_eq]='+ url,
         {
             headers: new Headers({'Authorization':  "Bearer j04rZ3-gVM-SyJlK-iAE1MH5HDbovh1u"})
         })
@@ -70,14 +70,13 @@ onMounted(() => {
 
 
 useHead({
-  title: panel.value.title+ ' - Takt City',
+  title: panel.value.title+ ' Takt City',
   meta: [
     { name: 'description', content: 'Takt City location.' }
   ],
   bodyAttrs: {
     // class: 'test'
-  },
- 
+  }
 })
 
 </script>
