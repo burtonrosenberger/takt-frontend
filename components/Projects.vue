@@ -3,7 +3,7 @@
     <v-col id="projects" cols="10" class="d-flex align-center pa-0">
         <v-slide-group
         v-model="model"
-        class="pa-4"
+        class=""
         active-class="success"
         show-arrows
         >
@@ -30,7 +30,7 @@
         </v-slide-group>
     </v-col>
     <v-col cols="2" class="d-flex align-center justify-center flex-column pa-0">
-        <div>
+        <div class="w-100">
             <div class="question mx-auto">
                 <span>_</span>
                 <p>Know more about projects</p>
@@ -54,7 +54,6 @@ h1 { color:white;}
     background-color: #374151;
     padding:0px 10px 15px;
     position:relative;
-    width:250px;
 }
 .question::before{ 
     content: '';

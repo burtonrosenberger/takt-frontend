@@ -1,18 +1,26 @@
 <template>
     <v-container fluid :style="{ backgroundColor: `#fcb34a` }">
         <v-app-bar color="#fcb34a" elevation="0">
-            <v-img style="cursor:pointer" @click="homeRef.scrollInto(`#home`)" :src="logo"  contain max-width="170px" alt="Der Takt" />
+            <v-app-bar-title>
+                <v-img style="cursor:pointer" @click="homeRef.scrollInto(`#home`)" :src="logo" contain max-width="100px" height="30px"  alt="Der Takt" />
+
+            </v-app-bar-title>
             <v-spacer></v-spacer>
-            <v-btn><v-icon color="#374151" size="x-large">mdi-volume-high </v-icon></v-btn>
+            <v-btn text v-for="i in menu" @click="scrollInto(i.link)">{{ i.title }}</v-btn>
+            <!-- <v-btn><v-icon color="#374151" size="x-large">mdi-volume-high </v-icon></v-btn> -->
             <v-btn variant="text" size="small"><v-img width="23px" height="25px" :src="german"
                 alt="German" /></v-btn>
             <v-btn variant="text" size="small"><v-img width="25px" height="25px" :src="english"
                 alt="English" /></v-btn>
         </v-app-bar>
-
-        <Home ref="homeRef"></Home>
-        <Participate id="participate"></Participate>
-        <Survey id="survey"></Survey>
+        <v-main>
+            <v-container class="pa-0" fluid>
+                <Game :games="panel.games" id="games"></Game>
+                <Home :desc="panel.description" ref="homeRef"></Home>
+                <Participate :projects="panel.projects" id="participate"></Participate>
+                <Survey :questions="panel.questions" id="survey"></Survey>
+            </v-container>
+        </v-main>
     </v-container>
 </template>
 <style scoped>
@@ -24,50 +32,34 @@ import german from '@/assets/lang/deu.png';
 import english from '@/assets/lang/eng.png';
 import { onMounted, ref } from 'vue';
 
-const lastScrollTop = ref(0)
 const homeRef = ref( null)
-const last = ref(0)
 const panel = ref({})
-const positions = [`home`, `participate`, `survey`]
-const actualView = ref(0)
-
-const handleScroll = (e) => {
-    var st = window.scrollY || document.documentElement.scrollTop;
-
-
-    // if ((e.timeStamp - last.value) > 1000) {
-    //     // console.log((e.timeStamp - last.value ))
-    //     console.log(st)
-    //     console.log(lastScrollTop.value)
-    //     last.value = e.timeStamp
-
-    //     if (st > lastScrollTop.value) {
-    //         actualView.value = actualView.value == positions.length-1 ? 0 : actualView.value + 1
-    //         console.log(`pra baixo ${positions[actualView.value]}`)
-    //         document.getElementById(positions[actualView.value]).scrollIntoView({ behavior: "smooth" });
-    //     } else {
-    //         actualView.value = actualView.value == 0 ? actualView.value : actualView.value - 1
-    //         console.log(`pra cima ${positions[actualView.value]}`)
-    //         document.getElementById(positions[actualView.value]).scrollIntoView({ behavior: "smooth" });
-    //     }
-    // }
-    lastScrollTop.value = st
-
+const menu = [
+{ title:"Home", link:"#home" },
+{ title:"Participation", link:"#participate" },
+{ title:"Survey", link:"#survey" },
+{ title:"Games", link:"#games" },
+{ title:"Location", link:"#location" },
+{ title:"Projects", link:"#projects" }
+]
+const scrollInto = (id) => {
+    document.querySelector(id).scrollIntoView({ behavior: "smooth", inline: "start" })
+    // if(id === `#home`) window.scrollY=0
 }
 
 const loadLocation = async () => {
     const { data } = await $fetch(
-        'https://takt.soultech.solutions/items/locations?filter[url][_eq]=aachner-rathaus&fields=*,facts.text,background_images.directus_files_id', {
-    })
+        'https://armn.takt.city/items/locations?filter[url][_eq]=aachner-rathaus',
+        {
+            headers: new Headers({'Authorization':  "Bearer j04rZ3-gVM-SyJlK-iAE1MH5HDbovh1u"})
+        })
     panel.value = data[0]
 }
 
 
 onMounted(() => {
     loadLocation()
-    window.addEventListener('scroll', handleScroll);
 })
 onUnmounted(() => {
-    window.removeEventListener('scroll', handleScroll);
 })
 </script>
