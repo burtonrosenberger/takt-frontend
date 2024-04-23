@@ -17,7 +17,7 @@ h1,h2,h3 {
   font-weight:400 !important;
 }
 html { 
-  overflow: auto;
+  overflow: hidden;
   font-family: 'Futura';
 }
  /* ===== Scrollbar CSS ===== */

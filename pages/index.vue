@@ -9,4 +9,14 @@
 </template>
 <script setup>
 import logo from '@/assets/logo.png';
+useHead({
+  title: 'Takt City',
+  meta: [
+    { name: 'description', content: 'Takt City.' }
+  ],
+  bodyAttrs: {
+    // class: 'test'
+  },
+ 
+})
 </script>

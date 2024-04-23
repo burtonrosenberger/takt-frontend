@@ -20,13 +20,13 @@
                         v-for="n in 15"
                         :key="n"
                     >
-                        <div class=" project mx-1 pa-15 d-flex align-start justify-center">
-                            <v-col cols="6" class=" text-right">
-                                <v-img class="mx-auto mr-0" width="75%"  :src="projectExample" />
+                        <div class=" project mx-1  d-flex align-start justify-center">
+                            <v-col cols="6" class="pa-0 text-right" >
+                                <v-img class="mx-auto mr-0" width="100%"  cover height="350px" style="border-top-left-radius:1000%"  :src="projectExample" />
                                 <p class="yellowTakt text-right">Location</p>
                                 <p class="yellowTakt text-right">Location Description</p>
                             </v-col>
-                            <v-col cols="6 pt-1">
+                            <v-col cols="6 pt-15">
                                 <h1>Title</h1>
                                 <h4>Subtitle</h4>
                                 <v-img width="80px" :src="qrCode" />

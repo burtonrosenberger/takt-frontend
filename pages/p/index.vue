@@ -16,7 +16,7 @@
         <v-main>
             <v-container class="pa-0" fluid>
                 <Game :games="panel.games" id="games"></Game>
-                <Home :desc="panel.description" ref="homeRef"></Home>
+                <Home :desc="panel.description" :location="{x: panel.marker_x, y:panel.marker_y}" ref="homeRef"></Home>
                 <Participate :projects="panel.projects" id="participate"></Participate>
                 <Survey :questions="panel.questions" id="survey"></Survey>
             </v-container>
@@ -54,12 +54,24 @@ const loadLocation = async () => {
             headers: new Headers({'Authorization':  "Bearer j04rZ3-gVM-SyJlK-iAE1MH5HDbovh1u"})
         })
     panel.value = data[0]
+    console.log(panel.value)
 }
 
 
 onMounted(() => {
     loadLocation()
 })
-onUnmounted(() => {
+
+useHead({
+  title: 'Takt City',
+  meta: [
+    { name: 'description', content: 'Takt City location.' }
+  ],
+  bodyAttrs: {
+    // class: 'test'
+  },
+ 
 })
+
+
 </script>

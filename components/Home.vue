@@ -9,6 +9,7 @@
                     Revolutionizing Public Engagement Services:<br>
                     Bringing Participation to the People, On the Go.
                 </h1>
+
                 <v-row class="d-flex align-end" style=" border-bottom:1px dashed #00000070; ">
                     <v-col v-for="b in buttons" class="pb-0">
                         <div class="question mb-5"
@@ -32,7 +33,9 @@
             <v-col class="d-flex flex-row" cols="12" sm="5">
                 <div class="w-100 align-center d-flex text-center">
                     <v-img :src="landMarks" height="90vh" class="d-flex align-center justify-center" contain>
-                        <v-img :src="marker" class="mx-auto" cover width="100px"></v-img>
+                        <v-img :src="marker" class="mx-auto" :style="{position:`relative`, left:`${location.x}px`, top:`${location.y}px`}" cover width="100px"></v-img>
+                      
+
                     </v-img>
                 </div>
             </v-col>
@@ -46,7 +49,7 @@
                     </div>
             </v-col>
             <v-col id="location" cols="12" sm="8" class="d-flex align-center justify-center ">
-                <p class="w-75 mx-auto" style="max-height:80%; overflow-y: auto;" v-html="desc"></p>
+                <p class="w-50 mx-auto" style="font-size:18pt; max-height:80%; overflow-y: auto;" v-html="desc"></p>
             </v-col>
             <v-btn @click="scrollToHome" v-if="view === `#location`" style="position:fixed; top:50%;" variant="text"
                 size="x-large" class="pa-0"><v-icon size="x-large">mdi-chevron-left</v-icon></v-btn>
@@ -108,6 +111,8 @@
 .question p {
     background-color: white;
     font-size:18pt;
+    border-radius:8px;
+
     padding: 5px;
 }
 </style>
@@ -120,9 +125,7 @@ import questions from '@/assets/questions.gif';
 import semminar from '@/assets/semminar.gif';
 import rollers from '@/assets/rollers.gif';
 
-const props = defineProps(['desc'])
-const first = ref(null)
-const timer = ref(null)
+const props = defineProps(['desc', 'location'])
 const view = ref('home')
 
 const buttons = ref([
@@ -143,20 +146,6 @@ const scrollInto = (id) => {
     view.value = id
 }
 
-// const scrollLeft = (max) => {
-//     timer.value = setInterval(() => {
-//         if (first.value) first.value.scrollLeft += 5
-//         if (first.value.scrollLeft == max) clearInterval(timer.value)
-//     }, 1)
-// }
-
-
-// const scrollRight = (max) => {
-//     timer.value = setInterval(() => {
-//         if (first.value) first.value.scrollLeft -= 5
-//         if (first.value.scrollLeft == max) clearInterval(timer.value)
-//     }, 1)
-// }
 onMounted(() => {
     setTimeout(() => { scrollToHome() }, 1500)
 })
