@@ -2,7 +2,7 @@
     <v-row class="" style="overflow: hidden;">
         <v-col class="d-flex flex-row" style="max-width:100vw; overflow:hidden;">
             <v-col cols="12">
-                <Projects></Projects>
+                <Projects :projects="projects"></Projects>
             </v-col>
             <v-col id="home" class="d-flex flex-column " cols="12" sm="9">
                 <h1 class="mb-15 mt-15 font-weight-thin  ">
@@ -125,7 +125,7 @@ import questions from '@/assets/questions.gif';
 import semminar from '@/assets/semminar.gif';
 import rollers from '@/assets/rollers.gif';
 
-const props = defineProps(['desc', 'location'])
+const props = defineProps(['desc', 'location', 'projects'])
 const view = ref('home')
 
 const buttons = ref([

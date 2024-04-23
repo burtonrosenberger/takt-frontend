@@ -16,8 +16,8 @@
         <v-main>
             <v-container class="pa-0" fluid>
                 <Game :games="panel.games" id="games"></Game>
-                <Home :desc="panel.description" :location="{x: panel.marker_x, y:panel.marker_y}" ref="homeRef"></Home>
-                <Participate :projects="panel.projects" id="participate"></Participate>
+                <Home :projects="panel.projects" :desc="panel.description" :location="{x: panel.marker_x, y:panel.marker_y}" ref="homeRef"></Home>
+                <Participate :projects="panel.participations" id="participate"></Participate>
                 <Survey :questions="panel.questions" id="survey"></Survey>
             </v-container>
         </v-main>
@@ -33,7 +33,8 @@ import english from '@/assets/lang/eng.png';
 import { onMounted, ref } from 'vue';
 
 const homeRef = ref( null)
-const panel = ref({})
+const panel = ref({title:"", projects:[], games:[], participations:[]})
+const route= useRoute()
 const menu = [
 { title:"Home", link:"#home" },
 { title:"Participation", link:"#participate" },
@@ -48,13 +49,18 @@ const scrollInto = (id) => {
 }
 
 const loadLocation = async () => {
+    let url = "aachner-rathaus"
+    if(route.params.url) { 
+        url = route.params.url
+    }
     const { data } = await $fetch(
-        'https://armn.takt.city/items/locations?filter[url][_eq]=aachner-rathaus',
+        'https://armn.takt.city/items/locations?fields=*,projects.projects_id.*&filter[url][_eq]='+ url,
         {
             headers: new Headers({'Authorization':  "Bearer j04rZ3-gVM-SyJlK-iAE1MH5HDbovh1u"})
         })
     panel.value = data[0]
     console.log(panel.value)
+
 }
 
 
@@ -62,8 +68,9 @@ onMounted(() => {
     loadLocation()
 })
 
+
 useHead({
-  title: 'Takt City',
+  title: panel.value.title+ ' - Takt City',
   meta: [
     { name: 'description', content: 'Takt City location.' }
   ],
@@ -72,6 +79,5 @@ useHead({
   },
  
 })
-
 
 </script>

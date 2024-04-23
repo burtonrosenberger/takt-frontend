@@ -83,6 +83,7 @@ const model = ref(0)
 const startAt = ref(0)
 const timer = ref(null)
 const circularAachen = ref(null)
+const props = defineProps(['questions'])
 
 const questions = ref([
     {

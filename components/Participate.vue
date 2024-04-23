@@ -17,7 +17,7 @@
                 show-arrows
                 >
                     <v-slide-group-item
-                        v-for="n in 15"
+                        v-for="n in participations"
                         :key="n"
                     >
                         <div class=" project mx-1  d-flex align-start justify-center">
@@ -82,5 +82,8 @@
 import projectExample from '@/assets/SCR-20240328-rexn.jpeg';
 import qrCode from '@/assets/testeQRCode.png';
 import questions from '@/assets/questions.gif';
+
+const props = defineProps(['participations'])
+
 const model = ref(0)
 </script>
