@@ -86,6 +86,8 @@
 }
 </style>
 <script setup>
+const props = defineProps(['games'])
+const actualGame = ref(0)
 const game = ref({
   description: "Pick and drag each of the Aachen Buildings to the total area of green open space required to compensate for its Carbon Footprint.",
   columns: [
