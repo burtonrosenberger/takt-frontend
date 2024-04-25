@@ -1,6 +1,6 @@
 <template>
   <v-row class="fill-min-height">
-    <v-col cols="12" class="d-flex align-start justify-center">
+    <v-col cols="12" class="d-flex align-start mt-5 justify-center">
       <p class="game-description">{{game.description}}</p>
     </v-col>
     <v-col cols="5"  class="d-flex align-start justify-end">
@@ -16,10 +16,9 @@
     <v-col cols="2" class="d-flex flex-column align-start w-75  mt-15 align-center justify-center">
       <p>Drag and Drop <br> from left to right</p>
       <v-spacer></v-spacer>
-      <p>
-        <v-btn class="btn">Reset</v-btn>
-        {{ success }}
-        <v-btn class="btn primary" v-if="success.length === 3">Next</v-btn>    
+      <p v-if="allCorrects">
+        <v-btn @click="resetGame" class=" mr-3">Reset</v-btn>
+        <v-btn class="btn primary" >Next</v-btn>    
       </p>
 
     </v-col>
@@ -37,6 +36,12 @@
 <style scoped>
 .grey { border:3px solid #374151;}
 .green { border:3px solid green;}
+.btn { 
+  background-color:#374151;
+  padding:5px;
+
+  color:white;
+}
 .game-description { 
   width:50%;
   margin:auto;
@@ -91,6 +96,12 @@ const game = ref({
 })
 const hover = ref([])
 const success = ref([])
+
+const allCorrects = computed(() => { 
+  let a = game.value.columns.map((e) => success.value[e.id]).every(Boolean)
+  return a
+})
+
 const getQuestions = (columns) => { 
   return columns.map(e => ({ id: e.id, value: e.question}))
 }
@@ -125,6 +136,10 @@ const handleDragOut = (e) => {
   // console.log(e.target.id)
 
   hover.value[e.target.id] = false
+}
+
+const resetGame = () => { 
+ success.value = []
 }
 </script>
 
