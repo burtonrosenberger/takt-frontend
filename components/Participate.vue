@@ -17,21 +17,22 @@
                 show-arrows
                 >
                     <v-slide-group-item
-                        v-for="n in participations"
-                        :key="n"
+                        v-for="{ participate_id } in participations"
+                        :key="participate_id.id"
                     >
-                        <div class=" project mx-1  d-flex align-start justify-center">
+                        <div class="project mx-1  d-flex align-start justify-center">
                             <v-col cols="6" class="pa-0 text-right" >
-                                <v-img class="mx-auto mr-0" width="100%"  cover height="350px" style="border-top-left-radius:1000%"  :src="projectExample" />
-                                <p class="yellowTakt text-right">Location</p>
-                                <p class="yellowTakt text-right">Location Description</p>
+                                <v-img class="mx-auto mr-0" width="100%" cover height="350px"
+                                style="border-top-left-radius:1000%" :src="`https://armn.takt.city/assets/${participate_id.image}`" />                                <p class="yellowTakt text-right">Location</p>
+                                <p class="yellowTakt text-right">{{ participate_id.location }}</p>
+                                <p class="yellowTakt text-right">{{ participate_id.location_description }}</p>
                             </v-col>
                             <v-col cols="6 pt-15">
-                                <h1>Title</h1>
-                                <h4>Subtitle</h4>
-                                <v-img width="80px" :src="qrCode" />
+                                <h1>{{participate_id.title}}</h1>
+                                <h4>{{participate_id.subtitle}}</h4>
+                                <v-img width="80px" :src="`https://armn.takt.city/assets/${participate_id.qrcode}`" />
                                 <p>
-                                    The open consultation Hours of the Citizens’ Dialogue and Administrative Management Department as well as other consultation hours take place in the citizens’ meeting in…
+                                    {{ participate_id.description }}
                                 </p>
                             </v-col>
                         </div>
@@ -79,11 +80,9 @@
 }
 </style>
 <script setup>
-import projectExample from '@/assets/SCR-20240328-rexn.jpeg';
-import qrCode from '@/assets/testeQRCode.png';
 import questions from '@/assets/questions.gif';
 
 const props = defineProps(['participations'])
-
 const model = ref(0)
+
 </script>

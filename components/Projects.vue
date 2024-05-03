@@ -80,8 +80,6 @@ h1 {
 }
 </style>
 <script setup>
-import projectExample from '@/assets/SCR-20240328-rexn.jpeg';
-import qrCode from '@/assets/testeQRCode.png';
 import semminar from '@/assets/semminar.gif';
 const model = ref(0)
 const props = defineProps(['projects'])
