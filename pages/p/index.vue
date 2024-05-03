@@ -17,7 +17,7 @@
             <v-container class="pa-0" fluid>
                 <Game :games="panel.games" id="games"></Game>
                 <Home :projects="panel.projects" :desc="panel.description" :location="{x: panel.marker_x, y:panel.marker_y}" ref="homeRef"></Home>
-                <Participate :projects="panel.participations" id="participate"></Participate>
+                <Participate :projects="panel.participate" id="participate"></Participate>
                 <Survey :questions="panel.questions" id="survey"></Survey>
             </v-container>
         </v-main>
@@ -54,7 +54,7 @@ const loadLocation = async () => {
         url = route.params.url
     }
     const { data } = await $fetch(
-        'https://armn.takt.city/items/locations?fields=*,projects.projects_id.*,questions.questions_id.*,questions.questions_id.answers.*&filter[url][_eq]='+ url,
+        'https://armn.takt.city/items/locations?fields=*,projects.projects_id.*,questions.questions_id.*,questions.questions_id.answers.*,games.games_id.*,games.games_id.columns.left,games.games_id.columns.right,games.games_id.columns.id&filter[url][_eq]='+ url,
         {
             headers: new Headers({'Authorization':  "Bearer j04rZ3-gVM-SyJlK-iAE1MH5HDbovh1u"})
         })
