@@ -31,7 +31,6 @@
           <div :id="item.id" @drop="handleDrop" @dragleave="handleDragOut" @dragover="handleDragOver" class="item1" :class="[hover[item.id] ?  `grey` : ``, success[item.id] ? `green` : ``]"  >
             <div class="title" :id="item.id">
               <v-img :id="item.id" :src="`https://armn.takt.city/assets/${item.value}`" cover width="90px" height="60px"></v-img>
-
             </div>
           </div>
         </v-list-item>
@@ -94,7 +93,7 @@
 <script setup>
 const props = defineProps(['games'])
 const actualGame = ref(0)
-const game = computed(() => (props.games ? props.games[actualGame.value].games_id : {description:"", columns:[]}));
+const game = computed(() => (props.games.length > 0 ? props.games[actualGame.value].games_id : {description:"", columns:[]}));
 // const game = computed(() => (props.games ? {description:"", columns:[]} : {description:"", columns:[]}));
 const hover = ref([])
 const success = ref([])
