@@ -6,8 +6,8 @@
             </v-col>
             <v-col id="home" class="d-flex flex-column " cols="12" sm="9">
                 <h1 class="mb-15 mt-15 font-weight-thin  ">
-                    Revolutionizing Public Engagement Services:<br>
-                    Bringing Participation to the People, On the Go.
+                    {{ $t('taktDescriptionLine1' )}}<br>
+                    {{ $t('taktDescriptionLine2') }}
                 </h1>
 
                 <v-row class="d-flex align-end" style=" border-bottom:1px dashed #00000070; ">
@@ -17,12 +17,12 @@
                             @click="b.dest !== `#location` ? scrollInto(b.dest) : undefined"
                             style="cursor:pointer; width:auto">
                             <!-- <span>Click here to</span> -->
-                            <p>{{ b.title }}</p>
+                            <p>{{ $t(b.title) }}</p>
                             <div v-if="b.dest === `#location`" class="mt-2 text-center">
                                 <v-btn @click="scrollInto(`#projects`)" variant="outlined" size="small"
-                                    style="border-color:white !important;">Projects</v-btn>
+                                    style="border-color:white !important;">{{$t('Projects')}}</v-btn>
                                 <v-btn @click="scrollInto(`#location`)" variant="outlined" size="small"
-                                    style="border-color:white !important; margin-left:5px;">Location</v-btn>
+                                    style="border-color:white !important; margin-left:5px;">{{$t('Location')}}</v-btn>
                             </div>
                         </div>
                         <v-img :min-width="[`#location`,`#survey`].indexOf(b.dest) > -1  ? `110%` : `100%`" contain :src="b.img" >
@@ -43,7 +43,7 @@
                 <div class="">
                 <div class="mx-auto question text-left">
                     <span>_</span>
-                    <p>Know more about the location</p>
+                    <p>{{ $t('knowMoreLocation')}}</p>
                 </div>
                 <img :src="semminar" width="150%" height="75%" style="border-bottom:1px dashed #00000070;" />
                     </div>
@@ -53,8 +53,8 @@
             </v-col>
             <v-btn @click="scrollToHome" v-if="view === `#location`" style="position:fixed; top:50%;" variant="text"
                 size="x-large" class="pa-0"><v-icon size="x-large">mdi-chevron-left</v-icon></v-btn>
-                <v-btn @click="scrollToHome" v-if="view === `#projects`" style="position:fixed; right:5px; top:50%;" variant="icon"
-                size="x-large"  class="pa-0"><v-icon size="x-large">mdi-chevron-right</v-icon></v-btn>
+            <v-btn @click="scrollToHome" v-if="view === `#projects`" style="position:fixed; right:5px; top:50%;" variant="icon"
+            size="x-large"  class="pa-0"><v-icon size="x-large">mdi-chevron-right</v-icon></v-btn>
            
         </v-col>
     </v-row>
@@ -129,10 +129,10 @@ const props = defineProps(['desc', 'location', 'projects'])
 const view = ref('home')
 
 const buttons = ref([
-    { title: "How to participate?", img: questions, dest: "#participate" },
-    { title: "Play a game!", img: rollers, dest: "#games" },
-    { title: "Know more about...", img: semminar, dest: "#location" },
-    { title: "Make your vote count!", img: job_offers, dest: "#survey" },
+    { title: "howToParticipate", img: questions, dest: "#participate" },
+    { title: "playGame", img: rollers, dest: "#games" },
+    { title: "knowMoreAbout", img: semminar, dest: "#location" },
+    { title: "makeYourVote", img: job_offers, dest: "#survey" },
 ])
 
 const scrollToHome = () => {

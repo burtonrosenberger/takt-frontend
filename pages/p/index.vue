@@ -3,14 +3,13 @@
         <v-app-bar color="#fcb34a" elevation="0">
             <v-app-bar-title>
                 <v-img style="cursor:pointer" @click="homeRef.scrollInto(`#home`)" :src="logo" contain max-width="100px" height="30px"  alt="Der Takt" />
-
             </v-app-bar-title>
             <v-spacer></v-spacer>
-            <v-btn text v-for="i in menu" @click="scrollInto(i.link)">{{ i.title }}</v-btn>
+            <v-btn text v-for="i in menu" @click="scrollInto(i.link)">{{ $t(i.title) }}</v-btn>
             <!-- <v-btn><v-icon color="#374151" size="x-large">mdi-volume-high </v-icon></v-btn> -->
-            <v-btn variant="text" size="small"><v-img width="23px" height="25px" :src="german"
+            <v-btn variant="text" size="small" @click="setLocale(`de`)"><v-img width="23px" height="25px" :src="german"
                 alt="German" /></v-btn>
-            <v-btn variant="text" size="small"><v-img width="25px" height="25px" :src="english"
+            <v-btn variant="text" size="small" @click="setLocale(`en`)"><v-img width="25px" height="25px" :src="english"
                 alt="English" /></v-btn>
         </v-app-bar>
         <v-main>
@@ -27,6 +26,7 @@
 
 </style>
 <script setup>
+const {  setLocale } = useI18n()
 import logo from '@/assets/logo.png';
 import german from '@/assets/lang/deu.png';
 import english from '@/assets/lang/eng.png';

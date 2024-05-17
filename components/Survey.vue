@@ -25,7 +25,7 @@
             <div>
                 <div class="question ">
                     <span>_</span>
-                    <p>Make your vote Count!</p>
+                    <p>{{ $t('makeYourVote') }}</p>
                 </div>
                 <img :src="job_offers" width="100%" min-height="300px"  style="border-bottom:1px dashed #00000070;" />
             </div>
@@ -94,6 +94,9 @@ const choiceAnswer = () => {
     else model.value++
 } 
 
+// const registerVote = (answer, location) { 
+
+// }
 const rotateAachen = (deg) => {
     const max = deg +startAt.value
     timer.value = setInterval(() => { 

@@ -15,13 +15,13 @@
 
     </v-col>  
     <v-col cols="2" class="d-flex flex-column align-start w-75  mt-15 align-center justify-center">
-      <p>Drag and Drop <br> from left to right</p>
-      <p style="color:red; font-weight:bold" class=" mt-5" v-if="error">Ops wrong answer, please try again!</p>
+      <p>{{  $t('dragAndDropLine1') }}<br>{{  $t('dragAndDropLine2') }}</p>
+      <p style="color:red; font-weight:bold" class=" mt-5" v-if="error">{{$t('wrongAnswer')}}</p>
       <v-spacer></v-spacer>
       
       <p v-if="allCorrects">
-        <v-btn @click="resetGame" class=" mr-3">Reset</v-btn>
-        <v-btn @click="nextGame" class="btn primary" >Next</v-btn>    
+        <v-btn @click="resetGame" class=" mr-3">{{$t(`Reset`)}}</v-btn>
+        <v-btn @click="nextGame" class="btn primary" >{{$t(`Next`)}}</v-btn>    
       </p>
 
     </v-col>
