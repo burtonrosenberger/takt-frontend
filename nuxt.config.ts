@@ -1,4 +1,27 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+
+
+async function getLocations() {
+  const response = await fetch("https://armn.takt.city/items/locations?fields=id,title,url",
+    {
+      headers: new Headers({'Authorization':  "Bearer j04rZ3-gVM-SyJlK-iAE1MH5HDbovh1u"})
+    });
+    const locations = await response.json()
+  // const pattern = /[\p{P}\p{Z}]+/gu;
+// console.log(locations.data)
+    return locations.data.map(l => `/p/${l.url}`)
+
+  // return response.data.data.map((article) => {
+  //   const removePonctuation = article.location
+  //     .replace(pattern, "-")
+  //     .toLowerCase();
+  //   const path = removePonctuation
+  //     .normalize("NFD")
+  //     .replace(/[\u0300-\u036f]/g, "");
+  //   return `/blog/${article.id}/${path}`;
+  // });
+}
+
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
@@ -18,5 +41,16 @@ export default defineNuxtConfig({
     vuetifyOptions: {
       /* vuetify options */
     }
-  }
+  },
+  hooks: {
+    async 'nitro:config'(nitroConfig) {
+      const slugs = await getLocations();
+
+      if (nitroConfig && nitroConfig.prerender && nitroConfig.prerender.routes) {
+        console.log(slugs);
+
+        nitroConfig.prerender.routes.push(...slugs);
+      }
+    },
+  },
 })
