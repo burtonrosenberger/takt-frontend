@@ -49,7 +49,7 @@
                     </div>
             </v-col>
             <v-col id="location" cols="12" sm="8" class="d-flex align-center justify-center ">
-                <p class="w-50 mx-auto" style="font-size:18pt; max-height:80%; overflow-y: auto;" v-html="desc"></p>
+                <p class="w-75 mx-auto" style="font-size:18pt; max-height:75%; overflow-y: auto;" v-html="desc"></p>
             </v-col>
             <v-btn @click="scrollToHome" v-if="view === `#location`" style="position:fixed; top:50%;" variant="text"
                 size="x-large" class="pa-0"><v-icon size="x-large">mdi-chevron-left</v-icon></v-btn>
