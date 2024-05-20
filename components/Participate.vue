@@ -4,7 +4,7 @@
                 <div>
                     <div class="question">
                         <span>_</span>
-                        <p>How to participate?</p>
+                        <p>{{ $t('howToParticipate') }}</p>
                     </div>
                     <v-img :src="questions" width="250px"  style="border-bottom:1px dashed #00000070;" />
                 </div>

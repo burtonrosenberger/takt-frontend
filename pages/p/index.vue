@@ -34,7 +34,7 @@ import { onMounted, ref } from 'vue';
 
 const homeRef = ref( null)
 const panel = ref({title:"", projects:[], games:[], participations:[]})
-const route= useRoute()
+const route = useRoute()
 const menu = [
 { title:"Home", link:"#home" },
 { title:"Participation", link:"#participate" },
@@ -50,15 +50,18 @@ const scrollInto = (id) => {
 
 const loadLocation = async () => {
     let url = "aachner-rathaus"
-    if(route.params.url) { 
+    let routeUrl = route.params.url
+    console.log({routeUrl})
+    if(routeUrl) { 
         url = route.params.url
     }
+    console.log({url})
     const { data } = await $fetch(
         'https://armn.takt.city/items/locations?fields=*,projects.projects_id.*,participate.participate_id.*,questions.questions_id.*,questions.questions_id.answers.*,games.games_id.*,games.games_id.columns.left,games.games_id.columns.right,games.games_id.columns.id&filter[url][_eq]='+ url,
         {
             headers: new Headers({'Authorization':  "Bearer j04rZ3-gVM-SyJlK-iAE1MH5HDbovh1u"})
         })
-    panel.value = data[0]
+    if (data[0]) panel.value = data[0]
     console.log(panel.value)
 
 }
