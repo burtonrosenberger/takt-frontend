@@ -37,27 +37,27 @@ export default defineI18nConfig(() => ({
         Participation: "Beteiligung",
         Survey: "Umfrage",
         Games: "Spiele",
-        Location: "‹ber Standort",
+        Location: "Über Standort",
         Projects: "Projekte",
 
         //HOME 
-        taktDescriptionLine1: "Revolutionierung ˆffentlicher Beteiligungsdienste:",
+        taktDescriptionLine1: "Revolutionierung Öffentlichkeit Beteiligungsdienste:",
         taktDescriptionLine2: "Partizipation zu den Menschen bringen, auch unterwegs.",
 
         //HOME - BUTTONS
         howToParticipate: "Wie kann ich mich beteiligen?",
         playGame: "Jetzt spielen!",
-        knowMoreAbout: "Erfahren Sie mehr ¸ber...",
+        knowMoreAbout: "Erfahren Sie mehr über...",
         makeYourVote: "Teilen Sie Ihre Stimme",
 
         //LOCATION
-        knowMoreLocation: "Erfahren Sie mehr ¸ber den Standort",
+        knowMoreLocation: "Erfahren Sie mehr über den Standort",
         
         //GAME 
         dragAndDropLine1: "Ziehen und Ablegen",
         dragAndDropLine2: "Von links nach rechts",
         wrongAnswer: "Falsche Antwort, bitte versuchen Sie es erneut!",
-        Reset: "Zur¸cksetzen",
+        Reset: "Zurücksetzen",
         Next: "Weiter"
       }
     }

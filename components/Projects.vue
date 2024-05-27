@@ -6,7 +6,7 @@
                     <div class=" project mx-4  d-flex align-start justify-center">
                         <v-col cols="6" class="pa-0 text-right">
                             <v-img class="mx-auto mr-0" width="100%" cover height="350px"
-                                style="border-top-left-radius:1000%" :src="`https://armn.takt.city/assets/${projects_id.image}`" />
+                                style="border-top-left-radius:45px" :src="`https://armn.takt.city/assets/${projects_id.image}`" />
                             <p class="yellowTakt text-right">{{ projects_id.location }}</p>
                             <p class="yellowTakt text-right">{{ projects_id.location_description }}</p>
                             <v-btn variant="text"><v-icon color="white" size="x-large">mdi-volume-high </v-icon></v-btn>
@@ -42,7 +42,7 @@ h1 {
 }
 
 .project {
-    border-radius: 10000px;
+    border-radius: 45px;
     width: 700px;
     height: 700px;
     background-color: #374151;
