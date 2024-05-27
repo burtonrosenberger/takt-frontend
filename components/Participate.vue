@@ -20,21 +20,25 @@
                         v-for="{ participate_id } in participations"
                         :key="participate_id.id"
                     >
-                        <div class="project mx-1  d-flex align-start justify-center">
-                            <v-col cols="6" class="pa-0 text-right" >
-                                <v-img class="mx-auto mr-0" width="100%" cover height="350px"
-                                style="border-top-left-radius:45px" :src="`https://armn.takt.city/assets/${participate_id.image}`" />                                <p class="yellowTakt text-right">Location</p>
-                                <p class="yellowTakt text-right">{{ participate_id.location }}</p>
-                                <p class="yellowTakt text-right">{{ participate_id.location_description }}</p>
-                            </v-col>
-                            <v-col cols="6 pt-15">
-                                <h1>{{participate_id.title}}</h1>
-                                <h4>{{participate_id.subtitle}}</h4>
-                                <v-img width="80px" :src="`https://armn.takt.city/assets/${participate_id.qrcode}`" />
-                                <p>
-                                    {{ participate_id.description }}
-                                </p>
-                            </v-col>
+                        <div class="project mx-4 d-flex align-start justify-center">
+                            <v-row>
+                                <v-col cols="12" class=" text-center" >
+                                    <v-img class="mx-auto mt-3" width="80%" contain height="250px"
+                                       :src="`https://armn.takt.city/assets/${participate_id.image}`" />                                
+                                </v-col>
+                                <v-col cols="12" class="px-10">
+                                    <p class="yellowTakt">{{ participate_id.location }}</p>
+                                    <p class="yellowTakt">{{ participate_id.location_description }}</p>
+                                    <h1>{{participate_id.title}}</h1>
+                                    <h4>{{participate_id.subtitle}}</h4>
+                                    <p>{{ participate_id.description }}</p>
+                                    <v-btn variant="text" class="px-0" size="sm">
+                                        <v-icon color="black" size="x-large">mdi-volume-high </v-icon>
+                                    </v-btn>
+                                    <v-img width="80px" class="mx-auto" :src="`https://armn.takt.city/assets/${participate_id.qrcode}`" />
+
+                                </v-col>
+                            </v-row>
                         </div>
                     </v-slide-group-item>
                 </v-slide-group>

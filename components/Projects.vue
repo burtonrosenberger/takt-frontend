@@ -3,24 +3,24 @@
         <v-col id="projects" cols="10" class="d-flex align-center pa-0">
             <v-slide-group v-model="model" class="" active-class="success" show-arrows>
                 <v-slide-group-item v-for="{ projects_id } in projects" :key="projects_id.id">
-                    <div class=" project mx-4  d-flex align-start justify-center">
-                        <v-col cols="6" class="pa-0 text-right">
-                            <v-img class="mx-auto mr-0" width="100%" cover height="350px"
-                                style="border-top-left-radius:45px" :src="`https://armn.takt.city/assets/${projects_id.image}`" />
-                            <p class="yellowTakt text-right">{{ projects_id.location }}</p>
-                            <p class="yellowTakt text-right">{{ projects_id.location_description }}</p>
-                            <v-btn variant="text"><v-icon color="white" size="x-large">mdi-volume-high </v-icon></v-btn>
-                        </v-col>
-                        <v-col cols="6 pt-15">
-                            <h1 class="white">{{ projects_id.title }}</h1>
-                            <h4>{{ projects_id.subtitle }}</h4>
-                            <v-img width="80px" :src="`https://armn.takt.city/assets/${projects_id.qrcode}`" />
-                            <p>
-                                {{ projects_id.description }}
-                            </p>
-                        </v-col>
-                        
-
+                    <div class=" project mx-4   d-flex align-start justify-center">
+                        <v-row>
+                            <v-col cols="12" class="text-center">
+                                <v-img class="mx-auto mt-3" width="80%" contain height="250px"
+                                    style="border-top-left-radius:0px" :src="`https://armn.takt.city/assets/${projects_id.image}`" />                                
+                            </v-col>
+                            <v-col cols="12" class="px-10">
+                                <p class="yellowTakt">{{ projects_id.location }}</p>
+                                <p class="yellowTakt">{{ projects_id.location_description }}</p>
+                                <h1 class="white">{{ projects_id.title }}</h1>
+                                <h4>{{ projects_id.subtitle }}</h4>
+                                <p> {{ projects_id.description }} </p>
+                                <v-btn variant="text" class="px-0" size="sm">
+                                    <v-icon color="white" size="x-large">mdi-volume-high </v-icon>
+                                </v-btn>
+                                <v-img width="80px" class="mx-auto" :src="`https://armn.takt.city/assets/${projects_id.qrcode}`" />
+                            </v-col>
+                        </v-row>
                     </div>
                 </v-slide-group-item>
             </v-slide-group>
