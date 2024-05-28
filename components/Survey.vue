@@ -10,12 +10,12 @@
                 >
                     <v-carousel-item
                         v-for="(p,i) in questions"
-                        :key="p.questions_id.id"
+                        :key="p.questions_id"
                     >
                         <div class="project my-15 pa-15 pt-0  d-flex align-center justify-center flex-column">
-                            <h1 class="text-center mb-15">{{i+1}}. {{ p.questions_id.question }}</h1>
+                            <h1 class="text-center mb-15">{{i+1}}. {{ p.question }}</h1>
                             <div class="text-center mt-5">
-                                <v-btn variant="flat" color="#374151" style="border-radius:5px; min-width:200px; margin:15px; color:white; padding:10px" @click="choiceAnswer" v-for="a in p.questions_id.answers">{{ a.answer }}</v-btn>
+                                <v-btn variant="flat" color="#374151" style="border-radius:5px; min-width:200px; margin:15px; color:white; padding:10px" @click="choiceAnswer" v-for="a in p.answers">{{ a.answer }}</v-btn>
                             </div>
                         </div>
                     </v-carousel-item>

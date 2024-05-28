@@ -17,7 +17,7 @@
                 <Game :games="games" id="games"></Game>
                 <Home :projects="projects" :desc="description" :location="{x: panel.marker_x, y:panel.marker_y}" ref="homeRef"></Home>
                 <Participate :participations="participate" id="participate"></Participate>
-                <Survey :questions="panel.questions" id="survey"></Survey>
+                <Survey :questions="questions" id="survey"></Survey>
             </v-container>
         </v-main>
         <v-row v-if="loading" class="loading">
@@ -61,7 +61,7 @@ import { onMounted, ref } from 'vue';
 
 const loading = ref(true)
 const homeRef = ref(null)
-const panel = ref({title:"", projects:[], games:[], participate:[], translations: []})
+const panel = ref({title:"", projects:[], games:[], participate:[],questions: [], translations: []})
 const route = useRoute()
 const menu = [
 { title:"Home", link:"#home" },
@@ -98,11 +98,21 @@ const participate = computed(() => {
     return participate
 })
 
+const questions = computed(() => { 
+    const questions = panel.value.questions.map((el) => { 
+        return { 
+            ...el.questions_id.translations.find(e => e.languages_code === locale.value), 
+            answers: el.questions_id.answers.map(a => { return {...a.translations.find(t => t.languages_code === locale.value)}})
+        }
+    })
+    return questions
+})
+
 const loadLocation = async () => {
     let url = route.params.id ? route.params.id : "current-location"
 
     const { data } = await $fetch(
-        'https://armn.takt.city/items/locations?fields=*,translations.*,projects.projects_id.*,projects.projects_id.translations.*,participate.participate_id.*,participate.participate_id.translations.*,questions.questions_id.*,questions.questions_id.answers.*,games.games_id.*,games.games_id.translations.*,games.games_id.columns.left,games.games_id.columns.right,games.games_id.columns.id&filter[url][_eq]='+ url,
+        'https://armn.takt.city/items/locations?fields=*,translations.*,projects.projects_id.*,projects.projects_id.translations.*,participate.participate_id.*,participate.participate_id.translations.*,questions.questions_id.*,questions.questions_id.translations.*,questions.questions_id.answers.*,questions.questions_id.answers.translations.*,games.games_id.*,games.games_id.translations.*,games.games_id.columns.left,games.games_id.columns.right,games.games_id.columns.id&filter[url][_eq]='+ url,
         {
             headers: new Headers({'Authorization':  "Bearer j04rZ3-gVM-SyJlK-iAE1MH5HDbovh1u"})
         })
