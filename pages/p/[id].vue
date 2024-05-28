@@ -15,8 +15,8 @@
         <v-main>
             <v-container class="pa-0" fluid>
                 <Game :games="games" id="games"></Game>
-                <Home :projects="panel.projects" :desc="description" :location="{x: panel.marker_x, y:panel.marker_y}" ref="homeRef"></Home>
-                <Participate :participations="panel.participate" id="participate"></Participate>
+                <Home :projects="projects" :desc="description" :location="{x: panel.marker_x, y:panel.marker_y}" ref="homeRef"></Home>
+                <Participate :participations="participate" id="participate"></Participate>
                 <Survey :questions="panel.questions" id="survey"></Survey>
             </v-container>
         </v-main>
@@ -61,7 +61,7 @@ import { onMounted, ref } from 'vue';
 
 const loading = ref(true)
 const homeRef = ref(null)
-const panel = ref({title:"", projects:[], games:[], participations:[], translations: []})
+const panel = ref({title:"", projects:[], games:[], participate:[], translations: []})
 const route = useRoute()
 const menu = [
 { title:"Home", link:"#home" },
@@ -86,19 +86,29 @@ const games = computed(() => {
     return games
 })
 
+const projects = computed(() => { 
+    const projects = panel.value.projects.map((el) =>  {
+        return { ...el.projects_id.translations.find(e => e.languages_code === locale.value), image: el.projects_id.image, qrcode: el.projects_id.qrcode, image: el.projects_id.image }})
+    return projects
+})
+
+const participate = computed(() => { 
+    const participate = panel.value.participate.map((el) =>  {
+        return { ...el.participate_id.translations.find(e => e.languages_code === locale.value), image: el.participate_id.image, qrcode: el.participate_id.qrcode, image: el.participate_id.image }})
+    return participate
+})
+
 const loadLocation = async () => {
     let url = route.params.id ? route.params.id : "current-location"
 
     const { data } = await $fetch(
-        'https://armn.takt.city/items/locations?fields=*,translations.*,projects.projects_id.*,projects.projects_id.translations.*,participate.participate_id.*,questions.questions_id.*,questions.questions_id.answers.*,games.games_id.*,games.games_id.translations.*,games.games_id.columns.left,games.games_id.columns.right,games.games_id.columns.id&filter[url][_eq]='+ url,
+        'https://armn.takt.city/items/locations?fields=*,translations.*,projects.projects_id.*,projects.projects_id.translations.*,participate.participate_id.*,participate.participate_id.translations.*,questions.questions_id.*,questions.questions_id.answers.*,games.games_id.*,games.games_id.translations.*,games.games_id.columns.left,games.games_id.columns.right,games.games_id.columns.id&filter[url][_eq]='+ url,
         {
             headers: new Headers({'Authorization':  "Bearer j04rZ3-gVM-SyJlK-iAE1MH5HDbovh1u"})
         })
     if (data[0]) panel.value = data[0]
     
     setTimeout(() => { loading.value = false} , 3000)
-
-
 }
 
 

@@ -2,7 +2,7 @@
     <v-row class="fill-min-height">
         <v-col id="projects" cols="10" class="d-flex align-center pa-0">
             <v-slide-group v-model="model" class="" active-class="success" show-arrows>
-                <v-slide-group-item v-for="{ projects_id } in projects" :key="projects_id.id">
+                <v-slide-group-item v-for="projects_id  in projects" :key="projects_id.projects_id">
                     <div class=" project mx-4   d-flex align-start justify-center">
                         <v-row>
                             <v-col cols="12" class="text-center">

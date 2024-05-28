@@ -17,8 +17,8 @@
                 show-arrows
                 >
                     <v-slide-group-item
-                        v-for="{ participate_id } in participations"
-                        :key="participate_id.id"
+                        v-for="participate_id  in participations"
+                        :key="participate_id.participate_id"
                     >
                         <div class="project mx-4 d-flex align-start justify-center">
                             <v-row>
