@@ -14,7 +14,7 @@
         </v-app-bar>
         <v-main>
             <v-container class="pa-0" fluid>
-                <Game :games="panel.games" id="games"></Game>
+                <Game :games="games" id="games"></Game>
                 <Home :projects="panel.projects" :desc="description" :location="{x: panel.marker_x, y:panel.marker_y}" ref="homeRef"></Home>
                 <Participate :participations="panel.participate" id="participate"></Participate>
                 <Survey :questions="panel.questions" id="survey"></Survey>
@@ -81,11 +81,16 @@ const description = computed(() => {
     return lang?.description
 })
 
+const games = computed(() => { 
+    const games = panel.value.games.map((el) =>   { return { ...el.games_id.translations.find(e => e.languages_code === locale.value), columns: el.games_id.columns }})
+    return games
+})
+
 const loadLocation = async () => {
     let url = route.params.id ? route.params.id : "current-location"
 
     const { data } = await $fetch(
-        'https://armn.takt.city/items/locations?fields=*,translations.*,projects.projects_id.*,participate.participate_id.*,questions.questions_id.*,questions.questions_id.answers.*,games.games_id.*,games.games_id.columns.left,games.games_id.columns.right,games.games_id.columns.id&filter[url][_eq]='+ url,
+        'https://armn.takt.city/items/locations?fields=*,translations.*,projects.projects_id.*,projects.projects_id.translations.*,participate.participate_id.*,questions.questions_id.*,questions.questions_id.answers.*,games.games_id.*,games.games_id.translations.*,games.games_id.columns.left,games.games_id.columns.right,games.games_id.columns.id&filter[url][_eq]='+ url,
         {
             headers: new Headers({'Authorization':  "Bearer j04rZ3-gVM-SyJlK-iAE1MH5HDbovh1u"})
         })
