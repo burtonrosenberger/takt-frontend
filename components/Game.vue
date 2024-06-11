@@ -8,7 +8,8 @@
         <v-list-item v-for=" item in getQuestions(game.columns)">
           <div class="item" v-show="!success[item.id]" draggable="true" @dragstart="dragStart" :id="item.id">
             <div class="title">
-              <v-img :src="`https://armn.takt.city/assets/${item.value}`" width="90px" height="60px"></v-img></div>
+            <v-img :id="item.id" :src="`https://armn.takt.city/assets/${item.value}`" cover width="150px" height="150px" style="border-radius:100%"></v-img>
+          </div>
           </div>
         </v-list-item>
       </v-list>
@@ -27,11 +28,14 @@
     </v-col>
     <v-col cols="5" class="d-flex align-start justify-start">
       <v-list style="background-color:transparent">
-        <v-list-item v-for=" item in getAnswers(game.columns)"  >
-          <div :id="item.id" @drop="handleDrop" @dragleave="handleDragOut" @dragover="handleDragOver" class="item1" :class="[hover[item.id] ?  `grey` : ``, success[item.id] ? `green` : ``]"  >
-            <div class="title" :id="item.id">
-              <v-img :id="item.id" :src="`https://armn.takt.city/assets/${item.value}`" cover width="90px" height="60px"></v-img>
-            </div>
+        <v-list-item v-for="item in getAnswers(game.columns)">
+          <div :id="item.id"  @drop="handleDrop" @dragleave="handleDragOut" @dragover="handleDragOver" >
+            <v-img
+           class="item1" :class="[hover[item.id] ?  `grey` : ``, success[item.id] ? `green` : ``]"
+            :id="item.id" :src="`https://armn.takt.city/assets/${item.value}`" cover width="150px" height="150px" 
+            >
+            <div :id="item.id" class="dropZone">a </div>
+          </v-img>
           </div>
         </v-list-item>
       </v-list>
@@ -39,6 +43,10 @@
   </v-row>
 </template>
 <style scoped>
+.dropZone { 
+  width:150px;
+  height:150px;
+}
 .grey { border:3px solid #374151;}
 .green { border:3px solid green;}
 .btn { 
@@ -58,7 +66,6 @@
 }
 .item { 
   background-color:#374151;
-  padding:30px;
   width:150px;
   height:150px;
   margin:10px;
@@ -123,10 +130,10 @@ const handleDrop = (e) => {
     error.value = true
     setTimeout(() => error.value = false, 3000)
   }
-  console.log({dropZoneId})
+  console.log({dropZoneId, draggedItemId})
 }
 const dragStart = (e) => { 
-  e.dataTransfer.setData("draggedItem", e.target.id);
+  e.dataTransfer.setData("draggedItem", e.target.parentElement.id);
 }
 
 const handleDragOver = (e) => {
