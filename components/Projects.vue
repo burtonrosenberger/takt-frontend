@@ -1,7 +1,7 @@
 <template>
     <v-row class="fill-min-height">
         <v-col id="projects" cols="10" class="d-flex align-center pa-0">
-            <v-slide-group v-model="model" class="" active-class="success" show-arrows>
+            <v-slide-group v-model="model" class="mt-10"  active-class="success" show-arrows>
                 <v-slide-group-item v-for="projects_id  in projects" :key="projects_id.projects_id">
                     <div class=" project mx-4   d-flex align-start justify-center">
                         <v-row>
@@ -15,9 +15,13 @@
                                 <h1 class="white">{{ projects_id.title }}</h1>
                                 <h4>{{ projects_id.subtitle }}</h4>
                                 <p> {{ projects_id.description }} </p>
-                                <v-btn variant="text" class="px-0" size="sm">
+                                <v-btn variant="text" @click="playAudio(`audio-${projects_id.id}`)" class="px-0" size="sm">
                                     <v-icon color="white" size="x-large">mdi-volume-high </v-icon>
                                 </v-btn>
+                                <audio :id="`audio-${projects_id.id}`">
+                                    <source :src="`https://armn.takt.city/assets/${projects_id.audio}`" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio> 
                                 <v-img width="80px" class="mx-auto" :src="`https://armn.takt.city/assets/${projects_id.qrcode}`" />
                             </v-col>
                         </v-row>
@@ -83,4 +87,7 @@ h1 {
 import semminar from '@/assets/semminar.gif';
 const model = ref(0)
 const props = defineProps(['projects'])
+const playAudio = (idAudio) => { 
+    document.getElementById(idAudio).play()
+}
 </script>

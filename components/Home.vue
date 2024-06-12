@@ -4,8 +4,8 @@
             <v-col cols="12">
                 <Projects :projects="projects"></Projects>
             </v-col>
-            <v-col id="home" class="d-flex flex-column " cols="12" sm="9">
-                <h1 class="mb-15 mt-15 font-weight-thin  ">
+            <v-col id="home" class="d-flex flex-column pl-10 " cols="12" sm="9">
+                <h1 class="mb-0 font-weight-thin" style="margin-top:140px;">
                     {{ $t('taktDescriptionLine1' )}}<br>
                     {{ $t('taktDescriptionLine2') }}
                 </h1>
@@ -34,8 +34,6 @@
                 <div class="w-100 align-center d-flex text-center">
                     <v-img :src="landMarks" height="90vh" class="d-flex align-center justify-center" contain>
                         <v-img :src="marker" class="mx-auto" :style="{position:`relative`, left:`${location.x}px`, top:`${location.y}px`}" cover width="100px"></v-img>
-                      
-
                     </v-img>
                 </div>
             </v-col>
@@ -48,8 +46,15 @@
                 <img :src="semminar" width="150%" height="75%" style="border-bottom:1px dashed #00000070;" />
                     </div>
             </v-col>
-            <v-col id="location" cols="12" sm="8" class="d-flex align-center justify-center ">
+            <v-col id="location" cols="12" sm="8" class="d-flex align-center justify-center flex-column ">
                 <p class="w-75 mx-auto" style="font-size:18pt; max-height:75%; overflow-y: auto;" v-html="desc"></p>
+                <v-btn variant="text" class="px-0 mt-3" size="lg"  v-if="audio" @click="playAudio(`locationAudio`)">
+                    <v-icon color="black" size="x-large">mdi-volume-high </v-icon>
+                </v-btn>
+                <audio id="locationAudio" v-if="audio">
+                    <source :src="`https://armn.takt.city/assets/${audio}`"  type="audio/mpeg" >
+                    Your browser does not support the audio element.
+                </audio>
             </v-col>
             <v-btn @click="scrollToHome" v-if="view === `#location`" style="position:fixed; top:50%;" variant="text"
                 size="x-large" class="pa-0"><v-icon size="x-large">mdi-chevron-left</v-icon></v-btn>
@@ -60,7 +65,9 @@
     </v-row>
 </template>
 <style>
-
+#home { 
+    max-height:91vh;
+}
 .hide-scroll {
     scrollbar-color: #fcb349 #fcb349;
 }
@@ -125,7 +132,7 @@ import questions from '@/assets/questions.gif';
 import semminar from '@/assets/semminar.gif';
 import rollers from '@/assets/rollers.gif';
 
-const props = defineProps(['desc', 'location', 'projects'])
+const props = defineProps(['desc', 'location', 'projects', 'audio'])
 const view = ref('home')
 
 const buttons = ref([
@@ -145,10 +152,14 @@ const scrollInto = (id) => {
     // if(id === `#home`) window.scrollY=0
     view.value = id
 }
-
+const playAudio = (idAudio) => { 
+    document.getElementById(idAudio).play()
+}
 onMounted(() => {
     setTimeout(() => { scrollToHome() }, 1500)
 })
+
+
 
 defineExpose({ scrollInto })
 </script>

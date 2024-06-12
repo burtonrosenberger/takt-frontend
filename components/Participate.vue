@@ -32,9 +32,14 @@
                                     <h1>{{participate_id.title}}</h1>
                                     <h4>{{participate_id.subtitle}}</h4>
                                     <p>{{ participate_id.description }}</p>
-                                    <v-btn variant="text" class="px-0" size="sm">
+                                    <v-btn variant="text" class="px-0" size="sm" v-if="participate_id.audio" @click="playAudio(`participate-${participate_id.id}`)">
                                         <v-icon color="black" size="x-large">mdi-volume-high </v-icon>
                                     </v-btn>
+                               
+                                    <audio :id="`participate-${participate_id.id}`" v-if="participate_id.audio">
+                                        <source :src="`https://armn.takt.city/assets/${participate_id.audio}`" type="audio/mpeg">
+                                        Your browser does not support the audio element.
+                                    </audio>
                                     <v-img width="80px" class="mx-auto" :src="`https://armn.takt.city/assets/${participate_id.qrcode}`" />
 
                                 </v-col>
@@ -89,4 +94,7 @@ import questions from '@/assets/questions.gif';
 const props = defineProps(['participations'])
 const model = ref(0)
 
+const playAudio = (idAudio) => { 
+    document.getElementById(idAudio).play()
+}
 </script>

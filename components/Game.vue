@@ -1,7 +1,16 @@
 <template>
   <v-row class="fill-min-height" >
     <v-col cols="12" class="d-flex align-start mt-5 justify-center">
-      <p class="game-description">{{game.description}}</p>
+      <p class="game-description mt-9 text-center">{{game.description}}
+      <v-btn variant="text" @click="playAudio(`game-${game.id}`)" v-if="game.audio" class="px-0" size="sm">
+          <v-icon color="white" size="sm">mdi-volume-high </v-icon>
+      </v-btn>
+    
+      <audio :id="`game-${game.id}`" v-if="game.audio">
+          <source :src="`https://armn.takt.city/assets/${game.audio}`" type="audio/mpeg">
+          Your browser does not support the audio element.
+      </audio> 
+    </p>
     </v-col>
     <v-col cols="5"  class="d-flex align-start justify-end">
       <v-list style="background-color:transparent">
@@ -155,6 +164,10 @@ const resetGame = () => {
 const nextGame = () => { 
   success.value = []
   actualGame.value = actualGame.value === props.games.length ? 0 : actualGame.value++
+}
+
+const playAudio = (idAudio) => { 
+    document.getElementById(idAudio).play()
 }
 </script>
 

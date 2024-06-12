@@ -15,7 +15,7 @@
         <v-main>
             <v-container class="pa-0" fluid>
                 <Game :games="games" id="games"></Game>
-                <Home :projects="projects" :desc="description" :location="{x: panel.marker_x, y:panel.marker_y}" ref="homeRef"></Home>
+                <Home :projects="projects" :desc="description" :audio="audio" :location="{x: panel.marker_x, y:panel.marker_y}" ref="homeRef"></Home>
                 <Participate :participations="participate" id="participate"></Participate>
                 <Survey :questions="questions" id="survey"></Survey>
             </v-container>
@@ -76,6 +76,11 @@ const scrollInto = (id) => {
     // if(id === `#home`) window.scrollY=0
 }
 
+const audio = computed(() => { 
+    const lang = panel.value.translations?.find((el) => el.languages_code === locale.value)
+    return lang?.audio
+
+})
 const description = computed(() => { 
     const lang = panel.value.translations?.find((el) => el.languages_code === locale.value)
     return lang?.description
@@ -130,7 +135,7 @@ onMounted(() => {
 useHead({
   title: panel.value.title+ ' Takt City',
   meta: [
-    { name: 'description', content: 'Takt City location.' }
+    { name: 'Takt City', content: 'Takt City .' }
   ],
   bodyAttrs: {
     // class: 'test'
