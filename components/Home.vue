@@ -2,7 +2,7 @@
     <v-row class="" style="overflow: hidden;">
         <v-col class="d-flex flex-row" style="max-width:100vw; overflow:hidden;">
             <v-col cols="12">
-                <Projects :projects="projects"></Projects>
+                <Projects @playAudio="(a) => $emit('playAudio', a)" :projects="projects"></Projects>
             </v-col>
             <v-col id="home" class="d-flex flex-column pl-10 " cols="12" sm="9">
                 <h1 class="mb-0 font-weight-thin" style="margin-top:140px;">
