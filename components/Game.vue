@@ -2,14 +2,10 @@
   <v-row class="fill-min-height" >
     <v-col cols="12" class="d-flex align-start mt-5 justify-center">
       <p class="game-description mt-9 text-center">{{game.description}}
-      <v-btn variant="text" @click="playAudio(`game-${game.id}`)" v-if="game.audio" class="px-0" size="sm">
+      <v-btn variant="text" @click="$emit(`playAudio`, game.audio)" v-if="game.audio" class="px-0" size="sm">
           <v-icon color="white" size="sm">mdi-volume-high </v-icon>
       </v-btn>
-    
-      <audio :id="`game-${game.id}`" v-if="game.audio">
-          <source :src="`https://armn.takt.city/assets/${game.audio}`" type="audio/mpeg">
-          Your browser does not support the audio element.
-      </audio> 
+
     </p>
     </v-col>
     <v-col cols="5"  class="d-flex align-start justify-end">
@@ -43,7 +39,7 @@
            class="item1" :class="[hover[item.id] ?  `grey` : ``, success[item.id] ? `green` : ``]"
             :id="item.id" :src="`https://armn.takt.city/assets/${item.value}`" cover width="150px" height="150px" 
             >
-            <div :id="item.id" class="dropZone">a </div>
+            <div :id="item.id" class="dropZone">_ </div>
           </v-img>
           </div>
         </v-list-item>

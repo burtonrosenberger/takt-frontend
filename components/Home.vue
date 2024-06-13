@@ -47,18 +47,15 @@
                     </div>
             </v-col>
             <v-col id="location" cols="12" sm="8" class="d-flex align-center justify-center flex-column ">
-                <p class="w-75 mx-auto" style="font-size:18pt; max-height:75%; overflow-y: auto;" v-html="desc"></p>
-                <v-btn variant="text" class="px-0 mt-3" size="lg"  v-if="audio" @click="playAudio(`locationAudio`)">
+                <p class="w-75 mx-auto" style="font-size:18pt; max-height:75vh; overflow-y: auto;" v-html="desc"></p>
+                <v-btn variant="text" class="px-0 mt-3" size="lg"  v-if="audio" @click="$emit('playAudio', audio)">
                     <v-icon color="black" size="x-large">mdi-volume-high </v-icon>
                 </v-btn>
-                <audio id="locationAudio" v-if="audio">
-                    <source :src="`https://armn.takt.city/assets/${audio}`"  type="audio/mpeg" >
-                    Your browser does not support the audio element.
-                </audio>
+      
             </v-col>
             <v-btn @click="scrollToHome" v-if="view === `#location`" style="position:fixed; top:50%;" variant="text"
                 size="x-large" class="pa-0"><v-icon size="x-large">mdi-chevron-left</v-icon></v-btn>
-            <v-btn @click="scrollToHome" v-if="view === `#projects`" style="position:fixed; right:5px; top:50%;" variant="icon"
+            <v-btn @click="scrollToHome" v-if="view === `#projects`" style="position:fixed; right:5px; top:50%;" variant="text"
             size="x-large"  class="pa-0"><v-icon size="x-large">mdi-chevron-right</v-icon></v-btn>
            
         </v-col>
@@ -152,9 +149,7 @@ const scrollInto = (id) => {
     // if(id === `#home`) window.scrollY=0
     view.value = id
 }
-const playAudio = (idAudio) => { 
-    document.getElementById(idAudio).play()
-}
+
 onMounted(() => {
     setTimeout(() => { scrollToHome() }, 1500)
 })

@@ -14,14 +14,11 @@
                     >
                         <div class="project my-15 pa-15 pt-0  d-flex align-center justify-center flex-column">
                             <h1 class="text-center mb-15">{{i+1}}. {{ p.question }}  
-                                <v-btn variant="text" v-if="p.audio !== null" @click="playAudio(`survey-${p.id}`)" class="px-0" size="sm">
+                                <v-btn variant="text" v-if="p.audio !== null" @click="$emit(`playAudio`, p.audio)" class="px-0" size="sm">
                                     <v-icon color="#374151" size="lg">mdi-volume-high </v-icon>
                                 </v-btn>
                             </h1>
-                            <audio :id="`survey-${p.id}`" v-if="p.audio !== null">
-                                    <source :src="`https://armn.takt.city/assets/${p.audio}`" type="audio/mpeg">
-                                    Your browser does not support the audio element.
-                                </audio>
+                         
                             <div class="text-center mt-5">
                                 <v-btn variant="flat" color="#374151" style="border-radius:5px; min-width:200px; margin:15px; color:white; padding:10px" @click="choiceAnswer" v-for="a in p.answers">{{ a.answer }}</v-btn>
                             </div>
@@ -93,9 +90,6 @@ const timer = ref(null)
 const circularAachen = ref(null)
 const props = defineProps(['questions'])
 
-const playAudio = (idAudio) => { 
-    document.getElementById(idAudio).play()
-}
 
 const choiceAnswer = () => { 
     rotateAachen(90)

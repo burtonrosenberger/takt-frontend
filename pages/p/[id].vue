@@ -14,11 +14,22 @@
         </v-app-bar>
         <v-main>
             <v-container class="pa-0" fluid>
-                <Game :games="games" id="games"></Game>
-                <Home :projects="projects" :desc="description" :audio="audio" :location="{x: panel.marker_x, y:panel.marker_y}" ref="homeRef"></Home>
-                <Participate :participations="participate" id="participate"></Participate>
-                <Survey :questions="questions" id="survey"></Survey>
+                <Game @playAudio="playAudio" :games="games" id="games"></Game>
+                <Home @playAudio="playAudio" :projects="projects" :desc="description" :audio="audio" :location="{x: panel.marker_x, y:panel.marker_y}" ref="homeRef"></Home>
+                <Participate @playAudio="playAudio" :participations="participate" id="participate"></Participate>
+                <Survey @playAudio="playAudio" :questions="questions" id="survey"></Survey>
             </v-container>
+            <div v-if="audioFile.id" style="position:fixed; right:15px; bottom:15px;">
+              <p class="mb-0">{{ audioFile.duration - audioFile.currentTime }}s 
+                <v-btn icon="mdi-volume-high" :loading="audioFile.id && audioFile.loading" variant="text" classs="px-0 pl-n5"> 
+                    
+                </v-btn>
+            </p> 
+            <audio  id="audioPlayer" @ended="completeAudio" @canplay="audioLoaded" @timeupdate="timeUpdate">
+            <source :src="`https://armn.takt.city/assets/${audioFile.id}`" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
         </v-main>
         <v-row v-if="loading" class="loading">
             <v-col cols="12" class="fill-height d-flex align-center justify-center">
@@ -28,6 +39,7 @@
                 </p>
             </v-col>
         </v-row>
+      
     </v-container>
 </template>
 <style scoped>
@@ -61,6 +73,7 @@ import { onMounted, ref } from 'vue';
 
 const loading = ref(true)
 const homeRef = ref(null)
+const audioId = ref(null)
 const panel = ref({title:"", projects:[], games:[], participate:[],questions: [], translations: []})
 const route = useRoute()
 const menu = [
@@ -71,6 +84,7 @@ const menu = [
 { title:"Location", link:"#location" },
 { title:"Projects", link:"#projects" }
 ]
+const audioFile = ref({id:null, duration: 0, currentTime: 0})
 const scrollInto = (id) => {
     document.querySelector(id).scrollIntoView({ behavior: "smooth", inline: "start" })
     // if(id === `#home`) window.scrollY=0
@@ -142,4 +156,37 @@ useHead({
   }
 })
 
+const playAudio = (idAsset) => {
+    console.log("load "+idAsset)
+    // console.log(audioFile)
+    if (audioFile.value.playing) {
+        document.getElementById("audioPlayer").pause()
+        audioFile.value.currentTime = 0
+        audioFile.value.duration = 0
+        audioFile.value.playing=false
+        audioFile.value.id = null
+    }
+    audioFile.value.loading=true
+    setTimeout(() => { 
+        audioFile.value.id = idAsset
+    },300)
+}
+const audioLoaded = () => { 
+    audioFile.value.loading=false
+
+    audioFile.value.playing=true
+    document.getElementById("audioPlayer").play()
+}
+
+const timeUpdate = () => { 
+    let player = document.getElementById("audioPlayer")
+    audioFile.value.currentTime = parseInt(player.currentTime);
+    audioFile.value.duration = parseInt(player.duration);
+}
+ const completeAudio = () => { 
+    audioFile.value.currentTime = 0
+    audioFile.value.duration = 0
+    audioFile.value.playing=false
+    audioFile.value.id = null
+ }
 </script>
