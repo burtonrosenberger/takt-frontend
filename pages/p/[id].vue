@@ -19,9 +19,9 @@
                 <Participate @playAudio="playAudio" :participations="participate" id="participate"></Participate>
                 <Survey @playAudio="playAudio" :questions="questions" id="survey"></Survey>
             </v-container>
-            <div v-if="audioFile.id" style="position:fixed; right:15px; bottom:15px;">
-              <p class="mb-0">{{ audioFile.duration - audioFile.currentTime }}s 
-                <v-btn icon="mdi-volume-high" :loading="audioFile.id && audioFile.loading" variant="text" classs="px-0 pl-n5"> 
+            <div v-if="audioFile.id" style="position:fixed; bottom:15px;" class="text-center w-100">
+              <p class="text-center mb-0  mx-auto pl-3" style="color:white;  background-color: #374151; border-radius:100px; width:120px;">{{ audioFile.duration - audioFile.currentTime }}s 
+                <v-btn :icon="audioFile.playing ?   `mdi-pause` : `mdi-play` " dark @click="audioFile.playing ?  pauseAudio() :  startAudio() " :loading="audioFile.id && audioFile.loading" variant="text" classs="mx-0"> 
                     
                 </v-btn>
             </p> 
@@ -73,7 +73,6 @@ import { onMounted, ref } from 'vue';
 
 const loading = ref(true)
 const homeRef = ref(null)
-const audioId = ref(null)
 const panel = ref({title:"", projects:[], games:[], participate:[],questions: [], translations: []})
 const route = useRoute()
 const menu = [
@@ -188,5 +187,16 @@ const timeUpdate = () => {
     audioFile.value.duration = 0
     audioFile.value.playing=false
     audioFile.value.id = null
+ }
+
+ const pauseAudio = () => { 
+    document.getElementById("audioPlayer").pause()
+    audioFile.value.playing=false
+
+ }
+ const startAudio = () => { 
+    document.getElementById("audioPlayer").play()
+    audioFile.value.playing=true
+
  }
 </script>

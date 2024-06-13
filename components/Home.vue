@@ -24,7 +24,7 @@
                                 <v-btn @click="scrollInto(`#location`)" variant="outlined" size="small"
                                     style="border-color:white !important; margin-left:5px;">{{$t('Location')}}</v-btn>
                             </div>
-                        </div>
+            </div>
                         <v-img :min-width="[`#location`,`#survey`].indexOf(b.dest) > -1  ? `110%` : `100%`" contain :src="b.img" >
                         </v-img>
                     </v-col>
@@ -40,7 +40,7 @@
             <v-col cols="2" class=" d-flex  flex-column justify-end align-end">
                 <div class="">
                 <div class="mx-auto question text-left">
-                    <span>_</span>
+                   
                     <p>{{ $t('knowMoreLocation')}}</p>
                 </div>
                 <img :src="semminar" width="150%" height="75%" style="border-bottom:1px dashed #00000070;" />
@@ -76,7 +76,7 @@
 
 .question {
     background-color: #374151;
-    padding:0px 10px 15px;
+    padding: 15px 10px;
     border-radius:15px;
     padding-top:10px;
     position:relative;

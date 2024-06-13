@@ -29,7 +29,6 @@
             <v-col cols="3" class="d-flex align-center justify-center fill-height-min flex-column">
             <div>
                 <div class="question ">
-                    <span>_</span>
                     <p>{{ $t('makeYourVote') }}</p>
                 </div>
                 <img :src="job_offers" width="100%" min-height="300px"  style="border-bottom:1px dashed #00000070;" />
@@ -54,7 +53,7 @@
 }
 .question {
     background-color: #374151;
-    padding:0px 10px 15px;
+    padding:15px 10px;
     position:relative;
 }
 .question::before{ 

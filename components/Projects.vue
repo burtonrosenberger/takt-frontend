@@ -29,7 +29,6 @@
         <v-col cols="2" class="d-flex align-center justify-center flex-column pa-0">
             <div class="w-100">
                 <div class="question mx-auto">
-                    <span>_</span>
                     <p>{{$t(`knowMoreAbout`)}}</p>
                 </div>
                 <v-img :src="semminar" width="350px" cover style="border-bottom:1px dashed #00000070;" />
@@ -52,7 +51,7 @@ h1 {
 
 .question {
     background-color: #374151;
-    padding: 0px 10px 15px;
+    padding: 15px 10px;
     position: relative;
 }
 

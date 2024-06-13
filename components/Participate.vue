@@ -3,7 +3,7 @@
             <v-col cols="2" class="d-flex align-center justify-center flex-column pa-0">
                 <div>
                     <div class="question">
-                        <span>_</span>
+                        
                         <p>{{ $t('howToParticipate') }}</p>
                     </div>
                     <v-img :src="questions" width="250px"  style="border-bottom:1px dashed #00000070;" />
@@ -56,7 +56,7 @@
 }
 .question {
     background-color: #374151;
-    padding:0px 10px 15px;
+    padding:15px 10px ;
     position:relative;
     margin-bottom:25px;
 }
