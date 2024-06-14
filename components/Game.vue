@@ -10,19 +10,22 @@
     </v-col>
     <v-col cols="5"  class="d-flex align-start justify-end">
       <v-list style="background-color:transparent">
-        <v-list-item v-for=" item in getQuestions(game.columns)">
-          <div class="item" v-show="!success[item.id]" draggable="true" @dragstart="dragStart" :id="item.id">
-            <div class="title">
-            <v-img :id="item.id" :src="`https://armn.takt.city/assets/${item.value}`" cover width="150px" height="150px" style="border-radius:100%"></v-img>
-          </div>
+        <v-list-item  v-for=" item in getQuestions(game.columns)">
+          <div class="d-flex flex-row align-center" v-show="!success[item.id]">
+            <h3 class="mr-5">{{ item.text }}</h3>
+            <div class="item"  draggable="true" @dragstart="dragStart" :id="item.id">
+              <div class="title">
+                <v-img :id="item.id" :src="`https://armn.takt.city/assets/${item.image}`" cover width="150px" height="150px" style="border-radius:100%"></v-img>
+              </div>
+            </div>
           </div>
         </v-list-item>
       </v-list>
-
     </v-col>  
     <v-col cols="2" class="d-flex flex-column align-start w-75  mt-15 align-center justify-center">
       <p>{{  $t('dragAndDropLine1') }}<br>{{  $t('dragAndDropLine2') }}</p>
       <p style="color:red; font-weight:bold" class=" mt-5" v-if="error">{{$t('wrongAnswer')}}</p>
+      
       <v-spacer></v-spacer>
       
       <p v-if="allCorrects">
@@ -33,14 +36,20 @@
     </v-col>
     <v-col cols="5" class="d-flex align-start justify-start">
       <v-list style="background-color:transparent">
+
+
         <v-list-item v-for="item in getAnswers(game.columns)">
+          <div class="d-flex flex-row align-center">
+          
           <div :id="item.id"  @drop="handleDrop" @dragleave="handleDragOut" @dragover="handleDragOver" >
             <v-img
            class="item1" :class="[hover[item.id] ?  `grey` : ``, success[item.id] ? `green` : ``]"
-            :id="item.id" :src="`https://armn.takt.city/assets/${item.value}`" cover width="150px" height="150px" 
+            :id="item.id" :src="`https://armn.takt.city/assets/${item.image}`" cover width="150px" height="150px" 
             >
             <div :id="item.id" class="dropZone">_ </div>
           </v-img>
+          </div>
+          <h3 class="mr-5">{{ item.text }}</h3>
           </div>
         </v-list-item>
       </v-list>
@@ -48,6 +57,9 @@
   </v-row>
 </template>
 <style scoped>
+h3 { 
+  font-weight: bolder !important;
+}
 .dropZone { 
   width:150px;
   height:150px;
@@ -116,11 +128,11 @@ const allCorrects = computed(() => {
 })
 
 const getQuestions = (columns) => { 
-  return columns.map(e => ({ id: e.id, value: e.left}))
+  return columns.map(e => ({ id: e.id, text: e.left_text, image: e.left}))
 }
 
 const getAnswers = (columns) => { 
-  return columns.map(e => ({id: e.id, value: e.right}))
+  return columns.map(e => ({id: e.id, text: e.right_text, image: e.right}))
 }
 
 const handleDrop = (e) => {

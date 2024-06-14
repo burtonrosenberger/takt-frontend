@@ -12,7 +12,7 @@
 
                 <v-row class="d-flex align-end" style=" border-bottom:1px dashed #00000070; ">
                     <v-col v-for="b in buttons" class="pb-0">
-                        <div class="question mb-5"
+                        <div class="question  mb-5"
                             :class="b.dest === `#games` ? `question2` : ``"
                             @click="b.dest !== `#location` ? scrollInto(b.dest) : undefined"
                             style="cursor:pointer; width:auto">
@@ -24,7 +24,7 @@
                                 <v-btn @click="scrollInto(`#location`)" variant="outlined" size="small"
                                     style="border-color:white !important; margin-left:5px;">{{$t('Location')}}</v-btn>
                             </div>
-            </div>
+                        </div>
                         <v-img :min-width="[`#location`,`#survey`].indexOf(b.dest) > -1  ? `110%` : `100%`" contain :src="b.img" >
                         </v-img>
                     </v-col>
@@ -33,7 +33,18 @@
             <v-col class="d-flex flex-row" cols="12" sm="5">
                 <div class="w-100 align-center d-flex text-center">
                     <v-img :src="landMarks" height="90vh" class="d-flex align-center justify-center" contain>
-                        <v-img :src="marker" class="mx-auto" :style="{position:`relative`, left:`${location.x}px`, top:`${location.y}px`}" cover width="100px"></v-img>
+                        <v-img :src="marker" class="mx-auto" :style="{position:`relative`, left:`${location.x}px`, top:`${location.y}px`}" cover width="100px">
+                        </v-img>
+                        <v-row
+                            class="question question3" 
+                            :style="{position:`relative`,width:`250px`, left:`-70px`, top:`150px`}">
+                            <v-col cols="6">
+                                <v-img :src="qrcodeArApplication" cover width="120px" min-height="100px"></v-img>
+                            </v-col>
+                            <v-col cols="6">
+                                <p style="font-size:16px">Scan this code to check out our AR experience!</p>                                
+                            </v-col>
+                        </v-row>
                     </v-img>
                 </div>
             </v-col>
@@ -107,6 +118,23 @@
     border-bottom: 1.3px solid #374151;
     bottom: -9px;
 }
+.question3 { 
+    padding-top:13px
+}
+.question3::before{ 
+    content: '';
+    position: absolute;
+    border-left: 1.3px solid #374151;
+    width: 18px;
+    height: 18px;
+    transform: rotateY(0deg) rotate(-45deg);
+    right: 30px;
+    background-color: #374151;
+    border-bottom: 1.3px solid #374151;
+    top: -9px;
+    
+}
+
 .question span {
     color: white;
     font-size: 12px;
@@ -116,12 +144,28 @@
     background-color: white;
     font-size:18pt;
     border-radius:8px;
-
     padding: 5px;
+}
+
+.question3 .v-col { 
+    background-color: white;
+    font-size:18pt;
+    padding: 5px;
+}
+
+.question3 div:first-child { 
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.question3 div:last-child { 
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 </style>
 <script setup>
 import marker from '@/assets/marker.png';
+import qrcodeArApplication from '@/assets/qr_for_ar.png';
 import landMarks from '@/assets/A3_landmarks.png';
 
 import job_offers from '@/assets/job_offers.gif';

@@ -100,7 +100,12 @@ const description = computed(() => {
 })
 
 const games = computed(() => { 
-    const games = panel.value.games.map((el) =>   { return { ...el.games_id.translations.find(e => e.languages_code === locale.value), columns: el.games_id.columns }})
+    const games = panel.value.games.map((el) =>   {
+        let columns = el.games_id.columns.map(c =>  { 
+            return {...c.translations.find(a => a.languages_code === locale.value)}
+        })
+        return { ...el.games_id.translations.find(e => e.languages_code === locale.value), columns }
+    })
     return games
 })
 
@@ -128,9 +133,13 @@ const questions = computed(() => {
 
 const loadLocation = async () => {
     let url = route.params.id ? route.params.id : "current-location"
-
+    let fields = "*,translations.*,"
+    fields += "projects.projects_id.*,projects.projects_id.translations.*,"
+    fields += "participate.participate_id.*,participate.participate_id.translations.*,"
+    fields += "questions.questions_id.*,questions.questions_id.translations.*,questions.questions_id.answers.*,questions.questions_id.answers.translations.*,"
+    fields += "games.games_id.*,games.games_id.translations.*,games.games_id.columns.*,games.games_id.columns.translations.*"
     const { data } = await $fetch(
-        'https://armn.takt.city/items/locations?fields=*,translations.*,projects.projects_id.*,projects.projects_id.translations.*,participate.participate_id.*,participate.participate_id.translations.*,questions.questions_id.*,questions.questions_id.translations.*,questions.questions_id.answers.*,questions.questions_id.answers.translations.*,games.games_id.*,games.games_id.translations.*,games.games_id.columns.left,games.games_id.columns.right,games.games_id.columns.id&filter[url][_eq]='+ url,
+        'https://armn.takt.city/items/locations?fields='+ fields +'&filter[url][_eq]='+ url,
         {
             headers: new Headers({'Authorization':  "Bearer j04rZ3-gVM-SyJlK-iAE1MH5HDbovh1u"})
         })
