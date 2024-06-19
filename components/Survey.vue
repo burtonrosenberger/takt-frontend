@@ -20,7 +20,7 @@
                             </h1>
                          
                             <div class="text-center mt-5">
-                                <v-btn variant="flat" color="#374151" style="border-radius:5px; min-width:200px; margin:15px; color:white; padding:10px" @click="choiceAnswer" v-for="a in p.answers">{{ a.answer }}</v-btn>
+                                <v-btn variant="flat" color="#374151" style="border-radius:5px; min-width:200px; margin:15px; color:white; padding:10px" @click="choiceAnswer(a.id)" v-for="a in p.answers">{{ a.answer }}</v-btn>
                             </div>
                         </div>
                     </v-carousel-item>
@@ -90,16 +90,26 @@ const circularAachen = ref(null)
 const props = defineProps(['questions'])
 
 
-const choiceAnswer = () => { 
+const choiceAnswer = (answer) => { 
+    registerVote(answer)
     rotateAachen(90)
     console.log()
     if (model.value == (props.questions.length-1)) model.value = 0
     else model.value++
 } 
 
-// const registerVote = (answer, location) { 
+const registerVote = async (answer) => { 
+    await $fetch(
+        'https://armn.takt.city/items/votes',
+        {
+            method: 'POST',
+            body: { answer: answer},
 
-// }
+            headers: new Headers({'Authorization':  "Bearer j04rZ3-gVM-SyJlK-iAE1MH5HDbovh1u"})
+        })
+        // console.log(data)
+}
+
 const rotateAachen = (deg) => {
     const max = deg +startAt.value
     timer.value = setInterval(() => { 
