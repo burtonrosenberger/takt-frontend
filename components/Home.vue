@@ -165,7 +165,7 @@
 </style>
 <script setup>
 import marker from '@/assets/marker.png';
-import qrcodeArApplication from '@/assets/qr_for_ar.png';
+import qrcodeArApplication from '@/assets/qr_for_ar.jpeg';
 import landMarks from '@/assets/A3_landmarks.png';
 
 import job_offers from '@/assets/job_offers.gif';
