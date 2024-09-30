@@ -178,7 +178,7 @@ const view = ref('home')
 
 const buttons = ref([
     { title: "howToParticipate", img: questions, dest: "#participate" },
-    { title: "playGame", img: rollers, dest: "#games" },
+    // { title: "playGame", img: rollers, dest: "#games" },
     { title: "knowMoreAbout", img: semminar, dest: "#location" },
     { title: "makeYourVote", img: job_offers, dest: "#survey" },
 ])

@@ -79,7 +79,7 @@ const menu = [
 { title:"Home", link:"#home" },
 { title:"Participation", link:"#participate" },
 { title:"Survey", link:"#survey" },
-{ title:"Games", link:"#games" },
+//{ title:"Games", link:"#games" },
 { title:"Location", link:"#location" },
 { title:"Projects", link:"#projects" }
 ]
