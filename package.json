@@ -2,6 +2,10 @@
   "name": "nuxt-app",
   "private": true,
   "type": "module",
+  "author": {
+    "name":"Marcus Teixeira",
+    "email": "mteixeira@soultech.solutions"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev --host",

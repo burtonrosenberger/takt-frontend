@@ -35,16 +35,19 @@
                     <v-img :src="landMarks" height="90vh" class="d-flex align-center justify-center" contain>
                         <v-img :src="marker" class="mx-auto" :style="{position:`relative`, left:`${location.x}px`, top:`${location.y}px`}" cover width="100px">
                         </v-img>
+                        <!--
                         <v-row
                             class="question question3" 
                             :style="{position:`relative`,width:`250px`, left:`-70px`, top:`150px`}">
                             <v-col cols="6">
-                                <v-img :src="qrcodeArApplication" cover width="120px" min-height="100px"></v-img>
+                              
+                                    <v-img :src="qrcodeArApplication" cover width="120px" min-height="100px"></v-img>
                             </v-col>
                             <v-col cols="6">
                                 <p style="font-size:16px">Scan this code to check out our AR experience!</p>                                
                             </v-col>
                         </v-row>
+                        -->
                     </v-img>
                 </div>
             </v-col>
