@@ -37,18 +37,20 @@ export default defineI18nConfig(() => ({
         Participation: "Beteiligung",
         Survey: "Umfrage",
         Games: "Spiele",
-        Location: "Über Standort",
+        Location: "Standort",
         Projects: "Projekte",
 
         //HOME 
-        taktDescriptionLine1: "Revolutionierung Öffentlichkeit Beteiligungsdienste:",
-        taktDescriptionLine2: "Partizipation zu den Menschen bringen, auch unterwegs.",
+        // taktDescriptionLine1: "Revolutionierung Öffentlichkeit Beteiligungsdienste:",
+        // taktDescriptionLine2: "Partizipation zu den Menschen bringen, auch unterwegs.",
+        taktDescriptionLine1: "Revolution öffentlicher Beteiligungsformate:",
+        taktDescriptionLine2: "Beteiligung der Bürgerschaft, auch von unterwegs!",
 
         //HOME - BUTTONS
         howToParticipate: "Wie kann ich mich beteiligen?",
         playGame: "Jetzt spielen!",
         knowMoreAbout: "Erfahren Sie mehr über...",
-        makeYourVote: "Teilen Sie Ihre Stimme",
+        makeYourVote: "Ihre Stimme zählt!",
 
         //LOCATION
         knowMoreLocation: "Erfahren Sie mehr über den Standort",
