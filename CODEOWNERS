@@ -1,0 +1,5 @@
+# This is a CODEOWNERS file
+# Each line defines a pattern and the owner(s) who must review changes
+
+# Default owner for everything in the repo
+*                       @projecktadaa
