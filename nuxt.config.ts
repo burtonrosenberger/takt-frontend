@@ -17,29 +17,29 @@
  */
 
 async function getLocations() {
-  const response = await fetch("https://armn.takt.city/items/locations?fields=id,title,url",
-    {
-      headers: new Headers({'Authorization':  "Bearer j04rZ3-gVM-SyJlK-iAE1MH5HDbovh1u"})
-    });
-    const locations = await response.json()
-  // const pattern = /[\p{P}\p{Z}]+/gu;
-// console.log(locations.data)
-    return locations.data.map(l => `/p/${l.url}`)
+  const apiUrl = process.env.DIRECTUS_API_URL
+  const apiToken = process.env.DIRECTUS_API_TOKEN
 
-  // return response.data.data.map((article) => {
-  //   const removePonctuation = article.location
-  //     .replace(pattern, "-")
-  //     .toLowerCase();
-  //   const path = removePonctuation
-  //     .normalize("NFD")
-  //     .replace(/[\u0300-\u036f]/g, "");
-  //   return `/blog/${article.id}/${path}`;
-  // });
+  const response = await fetch(
+    `${apiUrl}/items/locations?fields=id,title,url`,
+    {
+      headers: { Authorization: `Bearer ${apiToken}` },
+    }
+  )
+  const locations = await response.json()
+  return locations.data.map((l: { url: string }) => `/p/${l.url}`)
 }
 
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  runtimeConfig: {
+    directusApiToken: process.env.DIRECTUS_API_TOKEN || '',
+    public: {
+      directusApiUrl: process.env.DIRECTUS_API_URL || '',
+      directusApiToken: process.env.DIRECTUS_API_TOKEN || '',
+    },
+  },
   app: {
     head: {
       charset: 'utf-8',

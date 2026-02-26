@@ -33,7 +33,7 @@
             <h3 class="mr-5">{{ item.text }}</h3>
             <div class="item"  draggable="true" @dragstart="dragStart" :id="item.id">
               <div class="title">
-                <v-img :id="item.id" :src="`https://armn.takt.city/assets/${item.image}`" cover width="150px" height="150px" style="border-radius:100%"></v-img>
+                <v-img :id="item.id" :src="assetUrl(item.image)" cover width="150px" height="150px" style="border-radius:100%"></v-img>
               </div>
             </div>
           </div>
@@ -62,7 +62,7 @@
           <div :id="item.id"  @drop="handleDrop" @dragleave="handleDragOut" @dragover="handleDragOver" >
             <v-img
            class="item1" :class="[hover[item.id] ?  `grey` : ``, success[item.id] ? `green` : ``]"
-            :id="item.id" :src="`https://armn.takt.city/assets/${item.image}`" cover width="150px" height="150px" 
+            :id="item.id" :src="assetUrl(item.image)" cover width="150px" height="150px" 
             >
             <div :id="item.id" class="dropZone">_ </div>
           </v-img>
@@ -132,7 +132,8 @@ h3 {
   color:white;
 }
 </style>
-<script setup>
+<script setup lang="ts">
+const { assetUrl } = useDirectus()
 const props = defineProps(['games'])
 const actualGame = ref(0)
 const game = computed(() => (props.games.length > 0 ? props.games[actualGame.value] : {description:"", columns:[]}));

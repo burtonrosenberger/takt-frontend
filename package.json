@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "author": {
-    "name":"Marcus Teixeira",
+    "name": "Marcus Teixeira",
     "email": "mteixeira@soultech.solutions"
   },
   "scripts": {
@@ -15,12 +15,14 @@
   },
   "dependencies": {
     "@nuxtjs/i18n": "^8.3.1",
+    "dompurify": "^3.3.1",
     "nuxt": "^3.10.3",
     "vue": "^3.4.19",
     "vue-router": "^4.3.0",
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
+    "@types/dompurify": "^3.2.0",
     "vuetify-nuxt-module": "^0.12.0"
   }
 }

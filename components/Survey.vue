@@ -97,10 +97,12 @@
     padding: 5px;
 }
 </style>
-<script setup>
+<script setup lang="ts">
 
 import job_offers from '@/assets/job_offers.gif';
 import circularAachenPng from '@/assets/Circular aachen.png';
+
+const { postItem } = useDirectus()
 const model = ref(0)
 const startAt = ref(0)
 const timer = ref(null)
@@ -108,24 +110,15 @@ const circularAachen = ref(null)
 const props = defineProps(['questions'])
 
 
-const choiceAnswer = (answer) => { 
+const choiceAnswer = (answer) => {
     registerVote(answer)
     rotateAachen(90)
-    console.log()
     if (model.value == (props.questions.length-1)) model.value = 0
     else model.value++
-} 
+}
 
-const registerVote = async (answer) => { 
-    await $fetch(
-        'https://armn.takt.city/items/votes',
-        {
-            method: 'POST',
-            body: { answer: answer},
-
-            headers: new Headers({'Authorization':  "Bearer j04rZ3-gVM-SyJlK-iAE1MH5HDbovh1u"})
-        })
-        // console.log(data)
+const registerVote = async (answer) => {
+    await postItem('votes', { answer })
 }
 
 const rotateAachen = (deg) => {

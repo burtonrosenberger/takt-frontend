@@ -42,7 +42,7 @@
                             <v-row>
                                 <v-col cols="12" class=" text-center" >
                                     <v-img class="mx-auto mt-3 rounded-lg" width="80%" contain height="250px"
-                                       :src="`https://armn.takt.city/assets/${participate_id.image}`" />                                
+                                       :src="assetUrl(participate_id.image)" />                                
                                 </v-col>
                                 <v-col cols="12" class="px-10">
                                     <p class="yellowTakt">{{ participate_id.location }}</p>
@@ -55,7 +55,7 @@
                                     </v-btn>
                                
                                   
-                                    <v-img width="80px" class="mx-auto" :src="`https://armn.takt.city/assets/${participate_id.qrcode}`" />
+                                    <v-img width="80px" class="mx-auto" :src="assetUrl(participate_id.qrcode)" />
 
                                 </v-col>
                             </v-row>
@@ -103,9 +103,10 @@
     padding: 5px;
 }
 </style>
-<script setup>
+<script setup lang="ts">
 import questions from '@/assets/questions.gif';
 
+const { assetUrl } = useDirectus()
 const props = defineProps(['participations'])
 const model = ref(0)
 

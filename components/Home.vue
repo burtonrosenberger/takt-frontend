@@ -79,7 +79,7 @@
                     </div>
             </v-col>
             <v-col id="location" cols="12" sm="8" class="d-flex align-center justify-center flex-column ">
-                <p class="w-75 mx-auto" style="font-size:18pt; max-height:75vh; overflow-y: auto;" v-html="desc"></p>
+                <p class="w-75 mx-auto" style="font-size:18pt; max-height:75vh; overflow-y: auto;" v-html="sanitizedDesc"></p>
                 <v-btn variant="text" class="px-0 mt-3" size="lg"  v-if="audio" @click="$emit('playAudio', audio)">
                     <v-icon color="black" size="x-large">mdi-volume-high </v-icon>
                 </v-btn>
@@ -184,7 +184,8 @@
     border-bottom-right-radius: 8px;
 }
 </style>
-<script setup>
+<script setup lang="ts">
+import DOMPurify from 'dompurify'
 import marker from '@/assets/marker.png';
 import qrcodeArApplication from '@/assets/qr_for_ar.jpeg';
 import landMarks from '@/assets/A3_landmarks.png';
@@ -195,6 +196,7 @@ import semminar from '@/assets/semminar.gif';
 import rollers from '@/assets/rollers.gif';
 
 const props = defineProps(['desc', 'location', 'projects', 'audio'])
+const sanitizedDesc = computed(() => props.desc ? DOMPurify.sanitize(props.desc) : '')
 const view = ref('home')
 
 const buttons = ref([

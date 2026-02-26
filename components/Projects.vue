@@ -25,7 +25,7 @@
                         <v-row>
                             <v-col cols="12" class="text-center">
                                 <v-img class="mx-auto mt-3" width="80%" contain height="250px"
-                                    style="border-top-left-radius:0px" :src="`https://armn.takt.city/assets/${projects_id.image}`" />                                
+                                    style="border-top-left-radius:0px" :src="assetUrl(projects_id.image)" />                                
                             </v-col>
                             <v-col cols="12" class="px-10">
                                 <p class="yellowTakt">{{ projects_id.location }}</p>
@@ -37,7 +37,7 @@
                                     <v-icon color="white" size="x-large">mdi-volume-high </v-icon>
                                 </v-btn>
                                
-                                <v-img width="80px" class="mx-auto" :src="`https://armn.takt.city/assets/${projects_id.qrcode}`" />
+                                <v-img width="80px" class="mx-auto" :src="assetUrl(projects_id.qrcode)" />
                             </v-col>
                         </v-row>
                     </div>
@@ -97,8 +97,10 @@ h1 {
     padding: 5px;
 }
 </style>
-<script setup>
+<script setup lang="ts">
 import semminar from '@/assets/semminar.gif';
+
+const { assetUrl } = useDirectus()
 const model = ref(0)
 const props = defineProps(['projects'])
 
